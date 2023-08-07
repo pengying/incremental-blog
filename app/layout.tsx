@@ -4,6 +4,7 @@ import Header from './components/header';
 import ThemeRegistry from './theme-registry';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
+import Logo from './components/logo';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,11 +21,11 @@ export default function RootLayout({
       <body>
       <Container maxWidth="lg">
         <ThemeRegistry options={{ key: 'mui' }}>
+          <Logo fill='white' />
           {children}
         </ThemeRegistry>
         </Container>
       </body>
-      
     </html>
   )
 }
