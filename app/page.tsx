@@ -1,12 +1,32 @@
+'use client';
+
+// TODO(peng) figure out how to add metadata
+
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import Typography, { typographyClasses } from '@mui/material/Typography';
+
+import theme from "./styles/theme/mui-theme";
+import AuthorHero from './components/author-hero';
+import Box from '@mui/material/Box';
 
 export default function Home({}) {
 
     return(
         <>
-            <Typography variant="h1">Responsive h3</Typography>
-            <p>otherstuff</p>
+            <Box 
+             sx={{
+                width: '80%',
+                mt: '100px',
+                mb: '100px',
+                [theme.breakpoints.only('sm')]: {
+                    display: 'none',
+                }
+             }}
+             >
+                <Typography variant="quote">Sharing my learnings piece by piece</Typography>
+             </Box>
+             <AuthorHero />
+
         </>
     )
 }

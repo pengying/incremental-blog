@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <ThemeRegistry options={{ key: 'mui' }}>
           {/* <Logo fill='white' /> */}
           <Header />
