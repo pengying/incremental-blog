@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import theme from "../styles/theme/mui-theme";
 import { Typography } from "@mui/material";
 
+// todo change this fill to theme value
+
 const Logo: React.FC<{ fill: string }> = ({ fill = "white" }) => {
   return (
     <>
@@ -14,7 +16,7 @@ const Logo: React.FC<{ fill: string }> = ({ fill = "white" }) => {
           viewBox="0 0 100 125"
           width="25"
           height="30"
-          fill={fill}
+          fill="white"
           className="Logo__Desktop"
         >
           <path d="M78.53,63.38a3.35,3.35,0,1,1,0,6.7H18.09V86.81H78.53V75.07a3.36,3.36,0,1,1,6.72,0V86.81a6.73,6.73,0,0,1-6.72,6.7H18.09a6.69,6.69,0,0,1-6.69-6.7V70.08a6.72,6.72,0,0,1,1.95-4.73,6.81,6.81,0,0,1,4.74-2Z" />
