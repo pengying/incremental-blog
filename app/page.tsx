@@ -15,7 +15,7 @@ export default function Home({}) {
         <>
             <Box 
              sx={{
-                width: '80%',
+                width: '70%',
                 mt: '100px',
                 mb: '100px',
                 [theme.breakpoints.only('sm')]: {
