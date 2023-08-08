@@ -4,14 +4,16 @@
 
 import * as React from 'react';
 
-import theme from '../styles/theme/mui-theme';
+
 import Layout from '../components/layout';
 import AuthorHero from '../components/author-hero';
+import PostSummary from '../components/post-summary';
+
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { getSortedPostsHeaders } from '../lib/posts';
-
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
@@ -24,7 +26,7 @@ export async function getStaticProps() {
 }
 
 export default function Page({allPostsHeaders}:any) {
-
+    const theme = useTheme();
     return(
         <Layout home>
             <Box 
@@ -40,7 +42,10 @@ export default function Page({allPostsHeaders}:any) {
                 <Typography variant="quote">Sharing my learnings piece by piece</Typography>
              </Box>
              <AuthorHero />
-
+             <PostSummary 
+               allPostsHeaders={allPostsHeaders}
+               >
+            </PostSummary>
         </Layout>
     )
 }
