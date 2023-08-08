@@ -5,6 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+
 import { styled } from "@mui/material/styles";
 
 function usePagination(data: any, itemsPerPage: number) {
@@ -50,30 +52,36 @@ export default function PostSummary({
   allPostsHeaders: any;
   postsPerPage?: number;
 }) {
+  const currPageData = usePagination(allPostsHeaders, postsPerPage);
+
+  const handleChange = (e: any, p: number) => {
+    currPageData.jump(p);
+  };
 
   return (
     <>
       <Grid container spacing={4}>
-        <Grid xs={7}>
-          <Card>
-            <CardContent>xs=8</CardContent>
-          </Card>
-        </Grid>
-        <Grid xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
+        {currPageData.currentData().map((pageData: any, index: number) => {
+          return (
+            <Grid key={pageData.id} xs={index % 3 === 0 ? 7 : 4}>
+              <CardHero>
+                <CardContent>
+                  <Typography>{pageData.title}</Typography>
+                </CardContent>
+              </CardHero>
+            </Grid>
+          );
+        })}
       </Grid>
-      <Pagination count={Math.ceil(allPostsHeaders.length / postsPerPage)} />
+      <Pagination
+        count={Math.ceil(allPostsHeaders.length / postsPerPage)}
+        page={currPageData.currentPage}
+        onChange={handleChange}
+      />
     </>
   );
 }
 
 const CardHero = styled(Card)(({ theme }) => ({
-  backgroundColor: 'grey.600'
+  backgroundColor: theme.palette.background.default,
 }));
