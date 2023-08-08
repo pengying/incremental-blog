@@ -16,15 +16,11 @@ export default function Layout({
   home: any
 }) {
   return (
-    <html lang="en">
-      <body>
       <Container maxWidth="lg">
         <ThemeRegistry options={{ key: 'mui' }}>
           <Header />
           {children}
         </ThemeRegistry>
         </Container>
-      </body>
-    </html>
   )
 }
