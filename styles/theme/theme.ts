@@ -1,4 +1,5 @@
 import merge from 'lodash.merge';
+import type { Theme } from 'theme-ui';
 
 import prism from './prism';
 
@@ -87,7 +88,7 @@ const colors = {
   },
 };
 
-const theme = merge({
+const theme: Theme = merge({
   initialColorMode: 'light',
   useCustomProperties: true,
   colors,
