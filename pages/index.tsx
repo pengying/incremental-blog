@@ -1,9 +1,7 @@
-'use client';
 
 // TODO(peng) figure out how to add metadata
 
 import * as React from 'react';
-
 
 import Layout from '../components/layout';
 import AuthorHero from '../components/author-hero';
@@ -41,7 +39,7 @@ export default function Page({allPostsHeaders}:any) {
                 }
              }}
              >
-                <Typography variant="quote">Everyday is an opportunity to grow.  Sharing my learnings piece by piece</Typography>
+                <Typography variant="quote">Everyday is an opportunity to grow.  Sharing my learnings, successes and failures.</Typography>
              </Box>
              <AuthorHero />
              <PostSummary
