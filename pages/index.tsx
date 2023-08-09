@@ -9,11 +9,12 @@ import Layout from '../components/layout';
 import AuthorHero from '../components/author-hero';
 import PostSummary from '../components/post-summary';
 
-import { useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { getSortedPostsHeaders } from '../lib/posts';
+import theme from '@/styles/theme/mui-theme';
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
@@ -32,17 +33,18 @@ export default function Page({allPostsHeaders}:any) {
             <Box 
              sx={{
                 width: '70%',
-                mt: '100px',
-                mb: '100px',
+                mt: theme.spacing(10),
+                mb: theme.spacing(10),
+                lineHeight: 1.2,
                 [theme.breakpoints.only('sm')]: {
                     display: 'none',
                 }
              }}
              >
-                <Typography variant="quote">Sharing my learnings piece by piece</Typography>
+                <Typography variant="quote">Everyday is an opportunity to grow.  Sharing my learnings piece by piece</Typography>
              </Box>
              <AuthorHero />
-             <PostSummary 
+             <PostSummary
                allPostsHeaders={allPostsHeaders}
                >
             </PostSummary>

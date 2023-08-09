@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles';
 declare module '@mui/material/styles' {
     interface TypographyVariants {
         logo: React.CSSProperties;
+        heroFooter: React.CSSProperties;
         heroTitle: React.CSSProperties;
         heroBody: React.CSSProperties;
         quote: React.CSSProperties;
@@ -13,6 +14,7 @@ declare module '@mui/material/styles' {
     // allow configuration using `createTheme`
     interface TypographyVariantsOptions {
         logo?: React.CSSProperties;
+        heroFooter?: React.CSSProperties;
         heroTitle?: React.CSSProperties;
         heroBody?: React.CSSProperties;
         quote?: React.CSSProperties;
@@ -23,6 +25,7 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Typography' {
     interface TypographyPropsVariantOverrides {
       logo: true;
+      heroFooter:true;
       heroTitle: true;
       heroBody: true;
       quote: true;
@@ -67,9 +70,17 @@ const theme = createTheme({
 
     heroBody: {
       fontFamily: roboto.style.fontFamily,
-      fontSize: '.9rem',
+      fontSize: '1rem',
       fontWeight: 300,
       color: '#73737D'
+    },
+
+    heroFooter: {
+      fontFamily: roboto.style.fontFamily,
+      fontSize: '1rem',
+      fontWeight: 700,
+      color: '#73737D',
+      opacity: 0.33
     },
 
     quote: {

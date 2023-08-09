@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
-import Link from '@mui/material/Link';
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import ArticleCard from "./article-card";
 
 function usePagination(data: any, itemsPerPage: number) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +57,7 @@ export default function PostSummary({
     currPageData.jump(p);
   };
   const theme = useTheme();
-  const smallSplit = useMediaQuery(theme.breakpoints.down("sm")) ? 7 : 5;
+  const smallSplit = useMediaQuery(theme.breakpoints.down("md")) ? 7 : 5;
 
   return (
     <>
@@ -69,22 +65,13 @@ export default function PostSummary({
         container
         spacing={5}
         sx={{
-          mt: theme.spacing(10),
+          mt: theme.spacing(12),
         }}
       >
         {currPageData.currentData().map((pageData: any, index: number) => {
           return (
             <Grid key={pageData.id} xs={(index + 1) % 4 > 1 ? smallSplit : 7}>
-              <CardHero>
-                <CardMedia sx={{ height: 280 }} image={pageData.hero} />
-                <CardContent sx= {{padding:0}}>
-                  <CardLink 
-                  href={`/posts/${pageData.slug}`} variant="heroTitle">
-                    {pageData.title}
-                  </CardLink>
-                  <Excerpt variant="heroBody">{pageData.excerpt}</Excerpt>
-                </CardContent>
-              </CardHero>
+              <ArticleCard pageData={pageData}></ArticleCard>
             </Grid>
           );
         })}
@@ -97,31 +84,3 @@ export default function PostSummary({
     </>
   );
 }
-
-const CardHero = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  height:'500px',
-  boxShadow: 'none',
-  backgroundImage: 'none',
-}));
-
-const CardLink =  styled(Link)(({ theme }) => ({
-  textDecoration: 'none',
-  display: 'block',
-  marginBottom: theme.spacing(2),
-  marginTop: theme.spacing(2),
-  color: theme.palette.primary.light,
-  transition: theme.transitions.create(['color']),
-  "&:hover": {
-    color: theme.palette.action.hover,
-  }
-}));
-
-// Ellipsize text after the 3rd line
-const Excerpt = styled(Typography)(({ theme }) => ({
-  display: '-webkit-box',
-  '-webkit-line-clamp': '2',
-  '-webkit-box-orient': 'vertical',
-  height: '2.5rem',
-  overflow: 'hidden',
-}));

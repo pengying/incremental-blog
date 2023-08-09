@@ -17,7 +17,7 @@ const NavigationHeader: React.FC<{}> = () => {
         sx={{
           position: "relative",
           zIndex: "appbar",
-          pt: "100px",
+          pt: theme.spacing(10),
           display: "flex",
           justifyContent: "space-between",
           [theme.breakpoints.down("sm")]: {
