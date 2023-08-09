@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import Logo from "./logo";
 
 import Box from "@mui/material/Box";
-import { appBarClasses, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 
 const NavigationHeader: React.FC<{}> = () => {
   const theme = useTheme();

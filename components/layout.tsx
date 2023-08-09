@@ -14,7 +14,7 @@ export default function Layout({
 }: {
   children: React.ReactNode,
   allPostHeaders: any,
-  home: any
+  home?: any
 }) {
   return (
       <Container maxWidth="lg">

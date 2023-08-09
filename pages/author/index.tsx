@@ -5,10 +5,9 @@ import * as React from 'react';
 import Layout from '../../components/layout';
 
 import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 import { getSortedPostsHeaders } from '../../lib/posts';
+import Typography from '@mui/material/Typography';
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
@@ -23,8 +22,8 @@ export async function getStaticProps() {
 export default function Page({allPostsHeaders}:any) {
     const theme = useTheme();
     return(
-        <Layout allPostHeaders={allPostsHeaders} home>
-TODO
+        <Layout allPostHeaders={allPostsHeaders}>
+            <Typography>Todo</Typography>
         </Layout>
     )
 }
