@@ -18,9 +18,10 @@ const AuthorHero = () => {
                 </Link>
                 <Box 
                     sx= {{
-                        width: '45%',
+                        width: '60%',
+                        lineHeight: 1.3,
                     }}>
-                                        <Typography variant="heroAuthor">I live at the intersection of product and engineering.  I enjoying understanding technology and businesses strategy.  I&apos;ve grown products from 0 to 1 and 1 to 1 billion.</Typography>
+                                        <Typography variant="heroAuthor">I&apos;m happiest at the intersection of product and engineering.  I enjoying understanding technology and businesses strategy.  I&apos;ve grown products from 0 to 1 and 1 to 1 billion.</Typography>
                 </Box>
 
             </Stack>

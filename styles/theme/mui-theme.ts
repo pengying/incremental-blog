@@ -4,6 +4,8 @@ import { createTheme } from '@mui/material/styles';
 declare module '@mui/material/styles' {
     interface TypographyVariants {
         logo: React.CSSProperties;
+        heroTitle: React.CSSProperties;
+        heroBody: React.CSSProperties;
         quote: React.CSSProperties;
         heroAuthor: React.CSSProperties;
     }
@@ -11,6 +13,8 @@ declare module '@mui/material/styles' {
     // allow configuration using `createTheme`
     interface TypographyVariantsOptions {
         logo?: React.CSSProperties;
+        heroTitle?: React.CSSProperties;
+        heroBody?: React.CSSProperties;
         quote?: React.CSSProperties;
         heroAuthor?: React.CSSProperties;
     }
@@ -19,16 +23,19 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Typography' {
     interface TypographyPropsVariantOverrides {
       logo: true;
+      heroTitle: true;
+      heroBody: true;
       quote: true;
       heroAuthor: true;
     }
   }
   
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+  weight: ['100','300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
 });
+
 const merriweather = Merriweather({
   weight: ['300', '400', '700'],
   subsets: ['latin'],
@@ -41,8 +48,9 @@ const theme = createTheme({
     background: {
         default: '#111216',
     },
-    secondary: {
-      main: '#ffcf74',
+    action: {
+      hover: '#ffcf74',
+      hoverOpacity:1
     },
     grey: {
         600: '#73737D'
@@ -50,22 +58,29 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
-    h1: {
+    
+    heroTitle: {
       fontFamily: merriweather.style.fontFamily,
       fontSize: '1.5rem',
       fontWeight: 400,
+    },
+
+    heroBody: {
+      fontFamily: roboto.style.fontFamily,
+      fontSize: '.9rem',
+      fontWeight: 300,
+      color: '#73737D'
     },
 
     quote: {
         fontFamily: roboto.style.fontFamily,
         fontSize: '3.0rem',
         fontWeight: 700,
-        lineHeight: 1.15,
       },
 
     heroAuthor: {
         fontFamily: roboto.style.fontFamily,
-        fontSize: '13px',
+        fontSize: '14px',
         fontWeight: 300,
         color: '#73737D'
       },
