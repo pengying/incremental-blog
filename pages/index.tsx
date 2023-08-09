@@ -1,4 +1,3 @@
-
 // TODO(peng) figure out how to add metadata
 
 import * as React from 'react';
@@ -12,7 +11,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { getSortedPostsHeaders } from '../lib/posts';
-import theme from '@/styles/theme/mui-theme';
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();

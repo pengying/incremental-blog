@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import theme from '../styles/theme/mui-theme';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';

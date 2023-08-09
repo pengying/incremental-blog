@@ -1,7 +1,6 @@
 import * as React from 'react';
 import type { Metadata } from 'next'
 import Header from './header';
-import ThemeRegistry from '../pages/theme-registry';
 import Container from '@mui/material/Container';
 import Footer from './footer';
 
@@ -19,11 +18,9 @@ export default function Layout({
 }) {
   return (
       <Container maxWidth="lg">
-        <ThemeRegistry options={{ key: 'mui' }}>
           <Header />
           {children}
           <Footer allPostsHeaders={allPostHeaders}/>
-        </ThemeRegistry>
         </Container>
   )
 }

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState, useEffect, MouseEvent } from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
