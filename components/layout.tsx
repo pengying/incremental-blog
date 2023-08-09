@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Header from './header';
 import ThemeRegistry from '../pages/theme-registry';
 import Container from '@mui/material/Container';
+import Footer from './footer';
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -10,9 +11,10 @@ import Container from '@mui/material/Container';
 // }
 
 export default function Layout({
-  children, home
+  children, allPostHeaders, home
 }: {
   children: React.ReactNode,
+  allPostHeaders: any,
   home: any
 }) {
   return (
@@ -20,6 +22,7 @@ export default function Layout({
         <ThemeRegistry options={{ key: 'mui' }}>
           <Header />
           {children}
+          <Footer allPostsHeaders={allPostHeaders}/>
         </ThemeRegistry>
         </Container>
   )

@@ -29,15 +29,15 @@ export async function getStaticProps() {
 export default function Page({allPostsHeaders}:any) {
     const theme = useTheme();
     return(
-        <Layout home>
+        <Layout allPostHeaders={allPostsHeaders} home>
             <Box 
              sx={{
                 width: '70%',
                 mt: theme.spacing(10),
                 mb: theme.spacing(10),
                 lineHeight: 1.2,
-                [theme.breakpoints.only('sm')]: {
-                    display: 'none',
+                [theme.breakpoints.down('sm')]: {
+                    // display: 'none',
                 }
              }}
              >

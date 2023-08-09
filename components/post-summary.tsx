@@ -77,6 +77,10 @@ export default function PostSummary({
         })}
       </Grid>
       <Pagination
+        sx={{
+          mt: theme.spacing(10),
+          mb: theme.spacing(10),
+        }}
         count={Math.ceil(allPostsHeaders.length / postsPerPage)}
         page={currPageData.currentPage}
         onChange={handleChange}
