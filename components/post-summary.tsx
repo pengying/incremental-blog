@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
 import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function usePagination(data: any, itemsPerPage: number) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,16 +59,31 @@ export default function PostSummary({
   const handleChange = (e: any, p: number) => {
     currPageData.jump(p);
   };
+  const theme = useTheme();
+  const smallSplit = useMediaQuery(theme.breakpoints.down("sm")) ? 7 : 5;
 
   return (
     <>
-      <Grid container spacing={4}>
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          mt: theme.spacing(10),
+        }}
+      >
         {currPageData.currentData().map((pageData: any, index: number) => {
           return (
-            <Grid key={pageData.id} xs={index % 3 === 0 ? 7 : 4}>
+            <Grid key={pageData.id} xs={(index + 1) % 4 > 1 ? smallSplit : 7}>
               <CardHero>
+                <CardMedia sx={{ height: 280 }} image={pageData.hero} />
                 <CardContent>
-                  <Typography>{pageData.title}</Typography>
+                  <Typography
+                    variant="h1"
+
+                  >
+                    {pageData.title}
+                  </Typography>
+                  <Typography>{pageData.excerpt}</Typography>
                 </CardContent>
               </CardHero>
             </Grid>

@@ -41,13 +41,21 @@ const theme = createTheme({
     background: {
         default: '#111216',
     },
+    secondary: {
+      main: '#ffcf74',
+    },
     grey: {
         600: '#73737D'
     }
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
-    
+    h1: {
+      fontFamily: merriweather.style.fontFamily,
+      fontSize: '1.5rem',
+      fontWeight: 400,
+    },
+
     quote: {
         fontFamily: roboto.style.fontFamily,
         fontSize: '3.0rem',
@@ -64,7 +72,7 @@ const theme = createTheme({
 
     logo: {
         fontFamily: merriweather.style.fontFamily,
-        fontSize: '25px',
+        fontSize: '1.5rem',
         fontWeight: 400,
     },
   },
