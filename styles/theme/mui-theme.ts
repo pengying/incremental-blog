@@ -53,7 +53,7 @@ const theme = createTheme({
     },
     action: {
       hover: '#ffcf74',
-      hoverOpacity:1
+      // hoverOpacity: 1
     },
     grey: {
         600: '#73737D'
@@ -91,8 +91,8 @@ const theme = createTheme({
 
     heroAuthor: {
         fontFamily: roboto.style.fontFamily,
-        fontSize: '14px',
-        fontWeight: 300,
+        fontSize: '15px',
+        fontWeight: 400,
         color: '#73737D'
       },
 

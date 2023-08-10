@@ -15,7 +15,7 @@ export default function ArticleCard({ pageData }: { pageData: any }) {
     <CardHero sx={{ borderRadius: 0 }}>
       <CardMedia sx={{ height: 280 }}>
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <Image src={pageData.hero} fill style={{objectFit:'cover'}} alt={pageData.title} />
+            <Image src={pageData.hero} fill sizes='280px, 40vw' style={{objectFit:'cover'}} alt={pageData.title} />
           </div>
       </CardMedia>
 
@@ -55,8 +55,8 @@ const CardLink = styled(Link)(({ theme }) => ({
 // Ellipsize text after the 3rd line
 const Excerpt = styled(Typography)(({ theme }) => ({
   display: "-webkit-box",
-  "-webkit-line-clamp": "2",
-  "-webkit-box-orient": "vertical",
+  WebkitLineClamp: "2",
+  WebkitBoxOrient: "vertical",
   height: "rem",
   overflow: "hidden",
 }));
