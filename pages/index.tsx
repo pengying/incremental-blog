@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import { getSortedPostsHeaders } from '../lib/posts';
+import { getSortedPostsHeaders } from '@/lib/posts';
 
 import type { Metadata } from 'next'
  
