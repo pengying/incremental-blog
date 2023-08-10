@@ -1,5 +1,3 @@
-// TODO(peng) figure out how to add metadata
-
 import * as React from 'react';
 
 import Layout from '../components/layout';
@@ -11,6 +9,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { getSortedPostsHeaders } from '../lib/posts';
+
+import type { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'Incremental Blog',
+  description: 'A place to share my thoughts',
+}
+ 
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
