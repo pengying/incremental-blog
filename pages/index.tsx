@@ -26,7 +26,7 @@ export async function getStaticProps() {
             allPostsHeaders: allPostsHeaders,
             copyrightDate: copyrightDate,
         },
-        revalidate: 1,
+        revalidate: 1, // TODO(peng): figure out why it throws an undfined error when revalidate isn't set.
     };
     return  returnObj;
 }

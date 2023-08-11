@@ -10,12 +10,16 @@ import Image from "next/image";
 import NextjsLink from "next/link";
 
 import Paragraph from "@/components/paragraph";
+import { styled } from "@mui/material/styles";
 
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 
-import '@/styles/prism.css';
+import "@/styles/prism.css";
 import Typography from "@mui/material/Typography";
+import ArticleSummary from "@/components/article-summary";
+import Stack from "@mui/material/Stack";
+import { useTheme } from "@emotion/react";
 
 // TODO(peng): add metadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 
@@ -28,9 +32,7 @@ const ResponsiveImage = (props: any) => (
   />
 );
 
-const NextLink = (props:any) =>(
-  <Link component={NextjsLink} {...props} />
-)
+const NextLink = (props: any) => <Link component={NextjsLink} {...props} />;
 
 const components = {
   img: ResponsiveImage,
@@ -52,7 +54,7 @@ export async function getStaticProps({ params }: { params: any }) {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism],
-      format: 'mdx',
+      format: "mdx",
     },
     parseFrontmatter: false,
   });
@@ -71,14 +73,40 @@ export default function Post({
   postData,
   copyrightDate,
 }: {
-  frontmatter: any
+  frontmatter: any;
   copyrightDate: string;
   postData: any;
 }) {
+  const theme = useTheme();
+
   return (
     <Layout copyrightDate={copyrightDate}>
-      <Typography variant="heroTitle">{frontmatter.title}</Typography>
+      <ConstrainedStack spacing={2}>
+        <Typography variant="postTitle">{frontmatter.title}</Typography>
+        <ArticleSummary frontmatter={frontmatter} />
+      </ConstrainedStack>
+      <Image
+        src={frontmatter.hero}
+        width="0"
+        height="0"
+        sizes="100vw"
+        style={{
+          width: "80%",
+          height: "500px",
+          objectFit: "cover",
+          objectPosition: 'left 20%',
+          margin: `0 auto 35px`,
+          display: 'block',
+        }}
+        alt={frontmatter.title}
+      />
       <MDXRemote {...postData} components={components} />
     </Layout>
   );
 }
+
+const ConstrainedStack = styled(Stack)(({ theme }) => ({
+  margin: `${theme.spacing(8)} auto 35px`,
+  width: "100%",
+  maxWidth: "680px",
+}));

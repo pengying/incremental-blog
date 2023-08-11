@@ -11,6 +11,7 @@ declare module "@mui/material/styles" {
     heroBody: React.CSSProperties;
     quote: React.CSSProperties;
     heroAuthor: React.CSSProperties;
+    postTitle: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -21,6 +22,7 @@ declare module "@mui/material/styles" {
     heroBody?: React.CSSProperties;
     quote?: React.CSSProperties;
     heroAuthor?: React.CSSProperties;
+    postTitle?: React.CSSProperties;
   }
 }
 
@@ -33,6 +35,7 @@ declare module "@mui/material/Typography" {
     heroBody: true;
     quote: true;
     heroAuthor: true;
+    postTitle: true;
   }
 }
 
@@ -108,6 +111,12 @@ const theme = createTheme({
       fontSize: "1.5rem",
       fontWeight: 400,
     },
+    
+    postTitle: {
+      fontFamily: merriweather.style.fontFamily,
+      fontSize: "3.0rem",
+      fontWeight: 700,
+    }
   },
 });
 
