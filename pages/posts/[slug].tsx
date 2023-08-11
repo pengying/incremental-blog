@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { getSortedPostsHeaders, getPostSlugs, getPostData } from "@/lib/posts";
+import { getPostSlugs, getPostData, getCopyrightDate } from "@/lib/posts";
 import { IArticle } from "@/types";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
@@ -9,6 +9,7 @@ import rehypePrism from "rehype-prism-plus";
 import Image from "next/image";
 
 import '@/styles/prism.css';
+import Container from "@mui/material/Container";
 
 // TODO(peng): add metadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 
@@ -33,23 +34,9 @@ export async function getStaticPaths() {
   };
 }
 
-// const fixMetaPlugin = (options = {}) => {
-//   return (tree: any) => {
-//     visitor(tree, "element", visitor);
-//   };
-
-//   function visitor(node: any, index: any, parent: any) {
-//     if (!parent || parent.tagName !== "pre" || node.tagName !== "code") {
-//       return;
-//     }
-
-//     node.data = { ...node.data, meta: node.properties.metastring };
-//   }
-// };
-
 export async function getStaticProps({ params }: { params: any }) {
-  const allPostsHeaders = await getSortedPostsHeaders();
-  const postData = await serialize(await getPostData(params.slug), {
+  const copyrightDate = await getCopyrightDate();
+  const postData = await serialize((await getPostData(params.slug)).content, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism],
@@ -60,21 +47,23 @@ export async function getStaticProps({ params }: { params: any }) {
   return {
     props: {
       postData: postData,
-      allPostHeaders: allPostsHeaders,
+      copyrightDate: copyrightDate,
     },
   };
 }
 
 export default function Post({
   postData,
-  allPostHeaders,
+  copyrightDate,
 }: {
-  allPostHeaders: IArticle;
+  copyrightDate: string;
   postData: any;
 }) {
   return (
-    <Layout allPostHeaders={allPostHeaders}>
+    <Layout copyrightDate={copyrightDate}>
+      <Container maxWidth="sm">
       <MDXRemote {...postData} components={components} />
+      </Container>
     </Layout>
   );
 }

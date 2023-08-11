@@ -6,22 +6,22 @@ import Layout from '../../components/layout';
 
 import { styled, useTheme } from '@mui/material/styles';
 
-import { getSortedPostsHeaders } from '../../lib/posts';
+import { getCopyrightDate } from '../../lib/posts';
 import Typography from '@mui/material/Typography';
 
 export async function getStaticProps() {
-    const allPostsHeaders = await getSortedPostsHeaders();
+    const copyrightDate = await getCopyrightDate();
     return  {
         props: {
-            allPostsHeaders,
+            copyrightDate,
         },
     };
 }
 
-export default function Page({allPostsHeaders}:any) {
+export default function Page({copyrightDate}:any) {
     const theme = useTheme();
     return(
-        <Layout allPostHeaders={allPostsHeaders}>
+        <Layout copyrightDate={copyrightDate}>
             <Typography>Todo</Typography>
         </Layout>
     )

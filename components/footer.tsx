@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Socials from "./socials";
 
-export default function Footer({ allPostsHeaders }: { allPostsHeaders: any }) {
+export default function Footer({ copyrightDate }: { copyrightDate: any }) {
     const theme = useTheme();
     return (
     <>
@@ -17,19 +17,12 @@ export default function Footer({ allPostsHeaders }: { allPostsHeaders: any }) {
           pb: theme.spacing(6),
         }}
       >
-        <Typography variant="heroFooter">© {copyrightDate(allPostsHeaders)} Incremental</Typography>
+        <Typography variant="heroFooter">© {copyrightDate} Incremental</Typography>
         <Socials />
         
       </Box>
     </>
   );
-}
-
-function copyrightDate(allPostsHeaders: any) {
-  const years = [0, allPostsHeaders.length - 1].map((edge) =>
-    new Date(allPostsHeaders[edge].date).getUTCFullYear()
-  );
-  return years[0] === years[1] ? `${years[0]}` : `${years[0]}–${years[1]}`;
 }
 
 const Hr = styled("hr")(({ theme }) => ({

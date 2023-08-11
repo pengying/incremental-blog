@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import { getSortedPostsHeaders } from '@/lib/posts';
+import { getSortedPostsHeaders, getCopyrightDate } from '@/lib/posts';
 
 import type { Metadata } from 'next'
  
@@ -20,17 +20,21 @@ export const metadata: Metadata = {
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
+    const copyrightDate = await getCopyrightDate();
     return  {
         props: {
-            allPostsHeaders,
+            allPostHeaders: allPostsHeaders,
+            copyrightDate: copyrightDate,
         },
     };
 }
 
-export default function Page({allPostsHeaders}:any) {
+export default function Page({allPostsHeaders, copywriteDate}: {
+    allPostsHeaders:any, copywriteDate:string
+}) {
     const theme = useTheme();
     return(
-        <Layout allPostHeaders={allPostsHeaders} home>
+        <Layout copyrightDate={copywriteDate} home>
             <Box 
              sx={{
                 width: '70%',
