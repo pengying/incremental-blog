@@ -7,18 +7,25 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function ArticleCard({ pageData }: { pageData: any }) {
   const date = new Date(pageData.date);
   return (
     <CardHero sx={{ borderRadius: 0 }}>
-      <CardMedia sx={{ height: 280 }}>
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <Image src={pageData.hero} fill sizes='280px, 40vw' style={{objectFit:'cover'}} alt={pageData.title} />
+      <Link href={`/posts/${pageData.slug}`}>
+        <CardMedia sx={{ height: 280 }}>
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <Image
+              src={pageData.hero}
+              fill
+              sizes="280px, 40vw"
+              style={{ objectFit: "cover" }}
+              alt={pageData.title}
+            />
           </div>
-      </CardMedia>
-
+        </CardMedia>
+      </Link>
       <CardContent sx={{ padding: 0 }}>
         <CardLink href={`/posts/${pageData.slug}`} variant="heroTitle">
           {pageData.title}

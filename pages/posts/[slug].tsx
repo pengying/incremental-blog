@@ -7,9 +7,15 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 
 import Image from "next/image";
+import NextjsLink from "next/link";
+
+import Paragraph from "@/components/paragraph";
+
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 
 import '@/styles/prism.css';
-import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 
 // TODO(peng): add metadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 
@@ -22,8 +28,14 @@ const ResponsiveImage = (props: any) => (
   />
 );
 
+const NextLink = (props:any) =>(
+  <Link component={NextjsLink} {...props} />
+)
+
 const components = {
   img: ResponsiveImage,
+  p: Paragraph,
+  a: NextLink,
 };
 
 export async function getStaticPaths() {
@@ -35,8 +47,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: any }) {
-  const copyrightDate = await getCopyrightDate();
-  const postData = await serialize((await getPostData(params.slug)).content, {
+  const frontmatter = await getPostData(params.slug);
+  const postData = await serialize(frontmatter.content, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism],
@@ -44,8 +56,10 @@ export async function getStaticProps({ params }: { params: any }) {
     },
     parseFrontmatter: false,
   });
+  const copyrightDate = await getCopyrightDate();
   return {
     props: {
+      frontmatter: frontmatter,
       postData: postData,
       copyrightDate: copyrightDate,
     },
@@ -53,17 +67,18 @@ export async function getStaticProps({ params }: { params: any }) {
 }
 
 export default function Post({
+  frontmatter,
   postData,
   copyrightDate,
 }: {
+  frontmatter: any
   copyrightDate: string;
   postData: any;
 }) {
   return (
     <Layout copyrightDate={copyrightDate}>
-      <Container maxWidth="sm">
+      <Typography variant="heroTitle">{frontmatter.title}</Typography>
       <MDXRemote {...postData} components={components} />
-      </Container>
     </Layout>
   );
 }

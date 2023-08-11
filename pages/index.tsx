@@ -21,20 +21,25 @@ export const metadata: Metadata = {
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
     const copyrightDate = await getCopyrightDate();
-    return  {
+    const returnObj = {
         props: {
-            allPostHeaders: allPostsHeaders,
+            allPostsHeaders: allPostsHeaders,
             copyrightDate: copyrightDate,
         },
+        revalidate: 1,
     };
+    return  returnObj;
 }
 
-export default function Page({allPostsHeaders, copywriteDate}: {
-    allPostsHeaders:any, copywriteDate:string
+export default function Page({
+    allPostsHeaders, 
+    copyrightDate}: {
+    allPostsHeaders:any
+    , copyrightDate:string
 }) {
     const theme = useTheme();
     return(
-        <Layout copyrightDate={copywriteDate} home>
+        <Layout copyrightDate={copyrightDate} home>
             <Box 
              sx={{
                 width: '70%',

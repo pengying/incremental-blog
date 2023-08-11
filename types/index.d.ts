@@ -12,15 +12,13 @@ export interface IAuthor {
 }
 
 export interface IArticle {
+  title?: string;
   slug?: string;
   authors?: IAuthor[];
   excerpt?: string;
   body?: string;
   id: string;
-  hero?: {
-    image?: string;
-    seo?: string;
-  };
+  hero?: string;
   timeToRead?: number;
   date: string;
   secret?: boolean;
