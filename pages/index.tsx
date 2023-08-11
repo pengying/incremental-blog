@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import Layout from '../components/layout';
-import AuthorHero from '../components/author-hero';
-import PostSummary from '../components/post-summary';
+import Layout from '@/components/layout';
+import AuthorHero from '@/components/author-hero';
+import PostSummary from '@/components/post-summary';
 
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
-    console.log(allPostsHeaders);
     return  {
         props: {
             allPostsHeaders,

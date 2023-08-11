@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 
 export async function getStaticProps() {
     const allPostsHeaders = await getSortedPostsHeaders();
-    console.log(allPostsHeaders);
     return  {
         props: {
             allPostsHeaders,
