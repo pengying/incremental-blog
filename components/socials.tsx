@@ -15,7 +15,7 @@ export default function Socials() {
       <StyledLink href="https://www.linkedin.com/in/pying/" target="_blank">
         <LinkedIn />
       </StyledLink>
-      <StyledLink href="http://github.com/pengying" target="_blank">
+      <StyledLink href="http://github.com/pengying/incremental-blog" target="_blank">
         <GitHub />
       </StyledLink>
     </Stack>
