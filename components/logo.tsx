@@ -11,9 +11,9 @@ const Logo: React.FC<{ fill: string }> = ({ fill = "white" }) => {
       <LogoContainer>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 100 125"
-          width="30"
-          height="40"
+          viewBox="0 0 100 100"
+          width="35"
+          height="35"
           fill="white"
           className="Logo__Desktop"
         >
