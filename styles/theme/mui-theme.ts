@@ -2,7 +2,6 @@ import { Roboto, Merriweather } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import type {} from "@mui/lab/themeAugmentation";
 
-
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     logo: React.CSSProperties;
