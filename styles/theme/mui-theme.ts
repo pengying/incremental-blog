@@ -24,6 +24,17 @@ declare module "@mui/material/styles" {
     heroAuthor?: React.CSSProperties;
     postTitle?: React.CSSProperties;
   }
+  interface Theme {
+    fonts: {
+      merriweather: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    fonts?: {
+      merriweather?: string;
+    };
+  }
 }
 
 // Update the Typography's variant prop options
@@ -36,6 +47,7 @@ declare module "@mui/material/Typography" {
     quote: true;
     heroAuthor: true;
     postTitle: true;
+    highlightFontFamily: true;
   }
 }
 
@@ -69,9 +81,11 @@ const theme = createTheme({
     MuiLink: {
     },
   },
+  fonts: {
+    merriweather: merriweather.style.fontFamily
+  },
   typography: {
     fontFamily: roboto.style.fontFamily,
-
     heroTitle: {
       fontFamily: merriweather.style.fontFamily,
       fontSize: "1.5rem",
@@ -111,7 +125,7 @@ const theme = createTheme({
       fontSize: "1.5rem",
       fontWeight: 400,
     },
-    
+
     postTitle: {
       fontFamily: merriweather.style.fontFamily,
       fontSize: "3.0rem",

@@ -10,6 +10,8 @@ import Image from "next/image";
 import NextjsLink from "next/link";
 
 import Paragraph from "@/components/paragraph";
+import Headings from "@/components/headings";
+
 import { styled } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
@@ -38,6 +40,12 @@ const components = {
   img: ResponsiveImage,
   p: Paragraph,
   a: NextLink,
+  h1: Headings.h2,
+  h2: Headings.h2,
+  h3: Headings.h3,
+  h4: Headings.h4,
+  h5: Headings.h5,
+  h6: Headings.h6,
 };
 
 export async function getStaticPaths() {
@@ -100,7 +108,31 @@ export default function Post({
         }}
         alt={frontmatter.title}
       />
+      <Box sx={{
+        'h1, h2, h3, h4, h5, h6': {
+          width: '100%',
+          margin: '0 auto',
+          maxWidth: {
+            sm: 486,
+            md: 507,
+            lg: 680
+          }
+        },
+        'h1, h1 *, h2, h2*':  {
+          margin: {
+            md: '25px auto 18px',
+            sm: '30px auto 18px',
+          }
+        },
+        'h3, h3 *': {
+          margin: '20px auto 10px'
+        }
+
+      }}>
+
+      
       <MDXRemote {...postData} components={components} />
+      </Box>
     </Layout>
   );
 }
@@ -110,3 +142,9 @@ const ConstrainedStack = styled(Stack)(({ theme }) => ({
   width: "100%",
   maxWidth: "680px",
 }));
+
+// const ConstrainedHeaders = styled(Box)(({ theme }) => ({
+//   h1 {
+//     margin: 'auto',
+//   }
+// }));
