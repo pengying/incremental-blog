@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-const prismStyles =  `
+const prismStyles =  css.global`
 pre[class*="language-"],
 code[class*="language-"] {
 	color: #d4d4d4;

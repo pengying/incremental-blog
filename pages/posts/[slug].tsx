@@ -13,7 +13,7 @@ import Paragraph from "@/components/paragraph";
 import Headings from "@/components/headings";
 
 import { styled } from "@mui/material/styles";
-import prismStyles from '@/styles/theme/prism';
+import prismStyles from "@/styles/theme/prism";
 
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
@@ -104,36 +104,35 @@ export default function Post({
           width: "80%",
           height: "500px",
           objectFit: "cover",
-          objectPosition: 'left 20%',
+          objectPosition: "left 20%",
           margin: `0 auto 35px`,
-          display: 'block',
+          display: "block",
         }}
         alt={frontmatter.title}
       />
-      <Box sx={{
-        'h1, h2, h3, h4, h5, h6': {
-          width: '100%',
-          margin: '0 auto',
-          maxWidth: {
-            sm: 486,
-            md: 507,
-            lg: 680
-          }
-        },
-        'h1, h1 *, h2, h2*':  {
-          margin: {
-            md: '25px auto 18px',
-            sm: '30px auto 18px',
-          }
-        },
-        'h3, h3 *': {
-          margin: '20px auto 10px'
-        }
-
-      }}>
-
-      <MDXRemote {...postData} components={components} />
-   
+      <Box
+        sx={{
+          "h1, h2, h3, h4, h5, h6": {
+            width: "100%",
+            margin: "0 auto",
+            maxWidth: {
+              sm: 486,
+              md: 507,
+              lg: 680,
+            },
+          },
+          "h1, h1 *, h2, h2*": {
+            margin: {
+              md: "25px auto 18px",
+              sm: "30px auto 18px",
+            },
+          },
+          "h3, h3 *": {
+            margin: "20px auto 10px",
+          },
+        }}
+      >
+        <MDXRemote {...postData} components={components} />
       </Box>
     </Layout>
   );
@@ -150,4 +149,3 @@ const ConstrainedStack = styled(Stack)(({ theme }) => ({
 //     margin: 'auto',
 //   }
 // }));
-

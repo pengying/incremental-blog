@@ -11,10 +11,14 @@ import Typography from '@mui/material/Typography';
 import { getSortedPostsHeaders, getCopyrightDate } from '@/lib/posts';
 
 import type { Metadata } from 'next'
+import Head from 'next/head';
  
 export const metadata: Metadata = {
   title: 'Incremental Blog',
   description: 'A place to share my thoughts',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
  
 

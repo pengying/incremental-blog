@@ -5,7 +5,7 @@ import { Twitter, LinkedIn, GitHub } from "@mui/icons-material";
 import Link from "@mui/material/Link";
 
 export default function Socials() {
-    const theme = useTheme();
+  const theme = useTheme();
 
   return (
     <Stack direction="row" spacing={2}>
@@ -15,7 +15,10 @@ export default function Socials() {
       <StyledLink href="https://www.linkedin.com/in/pying/" target="_blank">
         <LinkedIn />
       </StyledLink>
-      <StyledLink href="http://github.com/pengying/incremental-blog" target="_blank">
+      <StyledLink
+        href="http://github.com/pengying/incremental-blog"
+        target="_blank"
+      >
         <GitHub />
       </StyledLink>
     </Stack>
@@ -23,5 +26,5 @@ export default function Socials() {
 }
 
 const StyledLink = styled(Link)(({ theme }) => ({
-    color: theme.palette.grey[600],
+  color: theme.palette.grey[600],
 }));
