@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
-import theme from "../styles/theme/mui-theme";
+import {styled} from '@mui/material/styles';
 import { Typography } from "@mui/material";
 
 // todo change this fill to theme value
@@ -36,17 +35,13 @@ const Logo: React.FC<{ fill: string }> = ({ fill = "white" }) => {
 export default Logo;
 
 // TODO(peng): fix mobile query
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  .hideable {
-    margin: 0 0 0 0.5rem;
-  }
-
-  ${theme.breakpoints.down("sm")} {
-    .hideable {
-      display: none;
+const LogoContainer =  styled("div")(({ theme }) =>  theme.unstable_sx({
+  display: 'flex',
+  alignItems: 'center',
+  '.hideable': {
+    margin: '0 0 0 0.5rem',
+    [theme.breakpoints.down("sm")]: {
+      display: 'none',
     }
-  }
-`;
+  },
+  }));

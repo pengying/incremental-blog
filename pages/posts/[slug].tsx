@@ -9,8 +9,11 @@ import rehypePrism from "rehype-prism-plus";
 import Image from "next/image";
 import NextjsLink from "next/link";
 
+import Blockquote from "@/components/blockquote";
 import Paragraph from "@/components/paragraph";
 import Headings from "@/components/headings";
+import HorizontalRule from "@/components/horizontalrule";
+import Lists from "@/components/lists";
 
 import { styled } from "@mui/material/styles";
 import prismStyles from "@/styles/theme/prism";
@@ -29,6 +32,8 @@ const ResponsiveImage = (props: any) => (
   <Image
     alt={props.alt}
     sizes="100vw"
+    width="0"
+    height="0"
     style={{ width: "100%", height: "auto" }}
     {...props}
   />
@@ -40,12 +45,15 @@ const components = {
   img: ResponsiveImage,
   p: Paragraph,
   a: NextLink,
+  blockquote: Blockquote,
   h1: Headings.h2,
   h2: Headings.h2,
   h3: Headings.h3,
   h4: Headings.h4,
   h5: Headings.h5,
   h6: Headings.h6,
+  hr: HorizontalRule,
+  ol: Lists.ol,
 };
 
 export async function getStaticPaths() {
