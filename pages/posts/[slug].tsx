@@ -18,6 +18,8 @@ import Lists from "@/components/lists";
 import { styled } from "@mui/material/styles";
 import prismStyles from "@/styles/theme/prism";
 
+import css from "styled-jsx/css";
+
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 
@@ -34,7 +36,13 @@ const ResponsiveImage = (props: any) => (
     sizes="100vw"
     width="0"
     height="0"
-    style={{ width: "100%", height: "auto" }}
+    style={{
+      width: "100%",
+      height: "auto",
+      margin: "15px auto 50px",
+      maxWidth: "100%",
+      position: "relative",
+    }}
     {...props}
   />
 );
@@ -43,6 +51,7 @@ const NextLink = (props: any) => <Link component={NextjsLink} {...props} />;
 
 const components = {
   img: ResponsiveImage,
+  Image: Image,
   p: Paragraph,
   a: NextLink,
   blockquote: Blockquote,
@@ -54,6 +63,7 @@ const components = {
   h6: Headings.h6,
   hr: HorizontalRule,
   ol: Lists.ol,
+  ul: Lists.ul,
 };
 
 export async function getStaticPaths() {
@@ -72,7 +82,7 @@ export async function getStaticProps({ params }: { params: any }) {
       rehypePlugins: [rehypePrism],
       format: "mdx",
     },
-    parseFrontmatter: false,
+    parseFrontmatter: true,
   });
   const copyrightDate = await getCopyrightDate();
   return {
@@ -94,10 +104,12 @@ export default function Post({
   postData: any;
 }) {
   const theme = useTheme();
+  const imageStyles = getImageStyles(theme);
 
   return (
     <Layout copyrightDate={copyrightDate}>
       <style jsx>{prismStyles}</style>
+      <style jsx>{imageStyles}</style>
       <ConstrainedStack spacing={2}>
         <Typography variant="postTitle">{frontmatter.title}</Typography>
         <ArticleSummary frontmatter={frontmatter} />
@@ -129,7 +141,7 @@ export default function Post({
               lg: 680,
             },
           },
-          "h1, h1 *, h2, h2*": {
+          "h1, h1 *, h2, h2 *": {
             margin: {
               md: "25px auto 18px",
               sm: "30px auto 18px",
@@ -152,8 +164,70 @@ const ConstrainedStack = styled(Stack)(({ theme }) => ({
   maxWidth: "680px",
 }));
 
-// const ConstrainedHeaders = styled(Box)(({ theme }) => ({
-//   h1 {
-//     margin: 'auto',
-//   }
-// }));
+function getImageStyles(theme: any) {
+  const IMAGE_WIDTHS = {
+    regular: "680px",
+    large: "1004px",
+    full: "100vw",
+  };
+
+  return css.global`
+  div[class^="Image"] img {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
+    margin: 15px auto 50px;
+    border-radius: 5px;
+  
+    ${theme.breakpoints.only("md")} : {
+      margin: 10px auto 45px;
+    };
+  }
+
+ div.Image__Small {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  z-index: 0;
+  margin: 15px auto 50px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 680px;
+
+  .Image__Container {
+    text-align: center;
+  }
+
+  img.Image__With-Shadow {
+    box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  div.Image__Medium {
+    position: relative;
+    margin: 15px auto 50px;
+    width: 100%;
+    max-width: ${IMAGE_WIDTHS.large};
+  }
+
+  div.Image__Large {
+    position: relative;
+    left: -68px;
+    width: ${IMAGE_WIDTHS.full};
+    margin: 25px auto 60px;
+    pointer-events: none;
+
+    /* To allow interaction for all external interactions: YouTube, Twitter, Gist */
+    iframe {
+      pointer-events: all;
+    }
+
+    img {
+      border-radius: 0;
+    }
+  }
+ `;
+}
