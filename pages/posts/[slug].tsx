@@ -1,6 +1,5 @@
 import Layout from "@/components/layout";
 import { getPostSlugs, getPostData, getCopyrightDate } from "@/lib/posts";
-import { IArticle } from "@/types";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
@@ -272,3 +271,4 @@ function getHtmlStyles(theme: any) {
     }
   `;
 }
+

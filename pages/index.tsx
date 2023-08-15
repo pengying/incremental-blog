@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export async function getStaticProps() {
-  const allPostsHeaders = await getSortedPostsHeaders();
+  const allPostsHeaders = await getSortedPostsHeaders(true);
   const copyrightDate = await getCopyrightDate();
   const returnObj = {
     props: {

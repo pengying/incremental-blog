@@ -40,6 +40,7 @@ declare module "@mui/material/styles" {
 
   interface CommonColors {
     horizontalRule?: string;
+    copy?: string;
   }
 }
 
@@ -78,6 +79,7 @@ const theme = createTheme({
     },
     common: {
       horizontalRule: "rgba(255, 255, 255, 0.15)",
+      copy: "#6f7177",
     },
     action: {
       hover: "#ffcf74",
