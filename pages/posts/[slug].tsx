@@ -197,6 +197,7 @@ function getImageStyles(theme: any) {
   border-radius: 5px;
   width: 100%;
   max-width: 680px;
+}
 
   .Image__Container {
     text-align: center;
@@ -215,7 +216,7 @@ function getImageStyles(theme: any) {
 
   div.Image__Large {
     position: relative;
-    left: -68px;
+    left: -17px;
     width: ${IMAGE_WIDTHS.full};
     margin: 25px auto 60px;
     pointer-events: none;
