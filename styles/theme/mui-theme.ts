@@ -6,6 +6,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     logo: React.CSSProperties;
     heroFooter: React.CSSProperties;
+    heroName: React.CSSProperties;
     heroTitle: React.CSSProperties;
     heroBody: React.CSSProperties;
     quote: React.CSSProperties;
@@ -17,6 +18,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
     logo?: React.CSSProperties;
     heroFooter?: React.CSSProperties;
+    heroName?: React.CSSProperties;
     heroTitle?: React.CSSProperties;
     heroBody?: React.CSSProperties;
     quote?: React.CSSProperties;
@@ -41,6 +43,8 @@ declare module "@mui/material/styles" {
   interface CommonColors {
     horizontalRule?: string;
     copy?: string;
+    track?: string;
+    progress?: string;
   }
 }
 
@@ -49,6 +53,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     logo: true;
     heroFooter: true;
+    heroName: true;
     heroTitle: true;
     heroBody: true;
     quote: true;
@@ -80,6 +85,8 @@ const theme = createTheme({
     common: {
       horizontalRule: "rgba(255, 255, 255, 0.15)",
       copy: "#6f7177",
+      track: "rgba(255, 255, 255, 0.3)",
+      progress: "#fff",
     },
     action: {
       hover: "#ffcf74",
@@ -113,7 +120,7 @@ const theme = createTheme({
 
     heroFooter: {
       fontFamily: roboto.style.fontFamily,
-      fontSize: "1rem",
+      fontSize: "18px",
       fontWeight: 700,
       color: "#73737D",
       opacity: 0.33,
@@ -124,10 +131,15 @@ const theme = createTheme({
       fontSize: "3.0rem",
       fontWeight: 700,
     },
-
+    heroName: {
+      fontFamily: roboto.style.fontFamily,
+      fontSize: "18px",
+      fontWeight: 700,
+      color: "#73737D",
+    },
     heroAuthor: {
       fontFamily: roboto.style.fontFamily,
-      fontSize: "15px",
+      fontSize: "14px",
       fontWeight: 400,
       color: "#73737D",
     },

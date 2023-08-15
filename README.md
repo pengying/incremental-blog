@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Incremental Blog
+
+Blog template heavily inspired by Narative's [Novela](https://novela.narative.co/) but built on [Next.js](https://nextjs.org/) and [Mui](htttps://mui.com).
+
+## Preface
+A WIP with a laundry list of todos, but developed enough to serve some blog posts
+
+## TODOs
+- [ ] clean up code
+- [ ] style for mobile
+- [ ] add related articles 
+- [ ] refactor style to not mix sx + styled + style jsx
+- [ ] light / dark toggle
+- [ ] copy article link button
+- [ ] copy code block 
+- [ ] 
 
 ## Getting Started
 

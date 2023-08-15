@@ -21,7 +21,7 @@ const AuthorHero = ({ frontmatter }: { frontmatter: any }) => {
             />
           </Avatar>
         </Link>
-        <Typography variant="heroAuthor">Peng Ying</Typography>
+        <Typography variant="heroName">Peng Ying</Typography>
         <Typography variant="heroFooter">
           {date.toLocaleDateString()} &sdot; {frontmatter.readingTime.text}
         </Typography>
