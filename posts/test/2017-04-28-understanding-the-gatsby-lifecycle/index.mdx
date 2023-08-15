@@ -13,7 +13,7 @@ Hello, world! This is a demo post for `gatsby-theme-novela`. Novela is built by 
 At Narative, we’ve been fans of Gatsby from day one, using it to build performant and flexible products for both clients and ourselves. With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
 At Narative, we’ve been fans of Gatsby from day one, using it to build performant and flexible products for both clients and ourselves. With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
 
-```js
+```js {1, 5-8} showLineNumbers
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "@emotion/styled";
@@ -78,7 +78,7 @@ This is another paragraph after the code block.
 
 ## This is a secondary heading
 
-```jsx
+```jsx {3-4} showLineNumbers
 import React from "react";
 import { ThemeProvider } from "theme-ui";
 import theme from "./theme";
@@ -190,7 +190,11 @@ Gatsby is a staple within our engineering process at Narative, helping us help o
   <figcaption>Caption text for medium image</figcaption>
 </div>
 
-more stuff
+| Size   | Class Name      | Desciption                    |
+| ------ | :-------------- | :---------------------------- |
+| small  | Image\_\_Small  | Width of the text             |
+| medium | Image\_\_Medium | Larger than width of the text |
+| large  | Image\_\_Large  | Full width image              |
 
 <div className="Image__Large">
   <Image

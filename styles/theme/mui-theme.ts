@@ -34,6 +34,13 @@ declare module "@mui/material/styles" {
       merriweather?: string;
     };
   }
+  interface TypeBackground {
+    card?: string;
+  }
+
+  interface CommonColors {
+    horizontalRule?: string;
+  }
 }
 
 // Update the Typography's variant prop options
@@ -51,7 +58,7 @@ declare module "@mui/material/Typography" {
 }
 
 const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700"],
+  weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -67,6 +74,10 @@ const theme = createTheme({
     mode: "dark",
     background: {
       default: "#111216",
+      card: "#1D2128",
+    },
+    common: {
+      horizontalRule: "rgba(255, 255, 255, 0.15)",
     },
     action: {
       hover: "#ffcf74",

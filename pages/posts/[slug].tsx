@@ -14,6 +14,7 @@ import Paragraph from "@/components/paragraph";
 import Headings from "@/components/headings";
 import HorizontalRule from "@/components/horizontalrule";
 import Lists from "@/components/lists";
+import Table from "@/components/table";
 
 import { styled } from "@mui/material/styles";
 import prismStyles from "@/styles/theme/prism";
@@ -64,6 +65,10 @@ const components = {
   hr: HorizontalRule,
   ol: Lists.ol,
   ul: Lists.ul,
+  table: Table.table,
+  thead: Table.thead,
+  th: Table.th,
+  td: Table.td,
 };
 
 export async function getStaticPaths() {
@@ -104,12 +109,12 @@ export default function Post({
   postData: any;
 }) {
   const theme = useTheme();
-  const imageStyles = getImageStyles(theme);
+  const htmlStyles = getHtmlStyles(theme);
 
   return (
     <Layout copyrightDate={copyrightDate}>
       <style jsx>{prismStyles}</style>
-      <style jsx>{imageStyles}</style>
+      <style jsx>{htmlStyles}</style>
       <ConstrainedStack spacing={2}>
         <Typography variant="postTitle">{frontmatter.title}</Typography>
         <ArticleSummary frontmatter={frontmatter} />
@@ -164,7 +169,9 @@ const ConstrainedStack = styled(Stack)(({ theme }) => ({
   maxWidth: "680px",
 }));
 
-function getImageStyles(theme: any) {
+// Styles for HTML in the mdx files
+
+function getHtmlStyles(theme: any) {
   const IMAGE_WIDTHS = {
     regular: "680px",
     large: "1004px",
@@ -172,63 +179,96 @@ function getImageStyles(theme: any) {
   };
 
   return css.global`
-  div[class^="Image"] img {
-    display: inline-block;
-    position: relative;
-    max-width: 100%;
-    height: auto;
-    z-index: 0;
-    margin: 15px auto 50px;
-    border-radius: 5px;
-  
-    ${theme.breakpoints.only("md")} : {
-      margin: 10px auto 45px;
-    };
-  }
+    div[class^="Image"] img {
+      display: inline-block;
+      position: relative;
+      max-width: 100%;
+      height: auto;
+      z-index: 0;
+      margin: 15px auto 50px;
+      border-radius: 5px;
 
- div.Image__Small {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: 100%;
-  height: auto;
-  z-index: 0;
-  margin: 15px auto 50px;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 680px;
-}
-
-  .Image__Container {
-    text-align: center;
-  }
-
-  img.Image__With-Shadow {
-    box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.15);
-  }
-
-  div.Image__Medium {
-    position: relative;
-    margin: 15px auto 50px;
-    width: 100%;
-    max-width: ${IMAGE_WIDTHS.large};
-  }
-
-  div.Image__Large {
-    position: relative;
-    left: -17px;
-    width: ${IMAGE_WIDTHS.full};
-    margin: 25px auto 60px;
-    pointer-events: none;
-
-    /* To allow interaction for all external interactions: YouTube, Twitter, Gist */
-    iframe {
-      pointer-events: all;
+      ${theme.breakpoints.only("md")} : {
+        margin: 10px auto 45px;
+      }
     }
 
-    img {
-      border-radius: 0;
+    div.Image__Small {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      max-width: 100%;
+      height: auto;
+      z-index: 0;
+      margin: 15px auto 50px;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 680px;
+
+      ${theme.breakpoints.only("md")} : {
+        max-width: 507px;
+      }
+
+      ${theme.breakpoints.down("md")} : {
+        max-width: 486px;
+        margin: 0 auto 25px;
+      }
     }
-  }
- `;
+
+    .Image__Container {
+      text-align: center;
+    }
+
+    img.Image__With-Shadow {
+      box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    div.Image__Medium {
+      position: relative;
+      margin: 15px auto 50px;
+      width: 100%;
+      max-width: ${IMAGE_WIDTHS.large};
+
+      ${theme.breakpoints.only("down")} : {
+        border-radius: 0;
+        left: 0;
+        margin: 0 auto 25px;
+
+        img {
+          border-radius: 0;
+        }
+      }
+    }
+
+    div.Image__Large {
+      position: relative;
+      left: -17px;
+      width: ${IMAGE_WIDTHS.full};
+      margin: 25px auto 60px;
+      pointer-events: none;
+
+      /* To allow interaction for all external interactions: YouTube, Twitter, Gist */
+      iframe {
+        pointer-events: all;
+      }
+
+      img {
+        border-radius: 0;
+      }
+      ${theme.breakpoints.only("down")} : {
+        left: 0;
+        margin: 0 auto 25px;
+      }
+    }
+
+    figcaption {
+      color: ${theme.palette.grey[600]};
+      font-family: ${theme.fonts.merriweather};
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      padding-top: 6px;
+      opacity: 0.5;
+    }
+  `;
 }
