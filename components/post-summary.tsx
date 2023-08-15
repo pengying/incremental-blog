@@ -35,11 +35,9 @@ function usePagination(data: any, itemsPerPage: number) {
 }
 
 export default function PostSummary({
-  children,
   allPostsHeaders,
   postsPerPage = 6,
 }: {
-  children: any;
   allPostsHeaders: any;
   postsPerPage?: number;
 }) {

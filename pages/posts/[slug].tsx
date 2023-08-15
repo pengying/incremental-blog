@@ -51,7 +51,7 @@ const NextLink = (props: any) => <Link component={NextjsLink} {...props} />;
 
 const components = {
   img: ResponsiveImage,
-  Image: Image,
+  Image: ResponsiveImage,
   p: Paragraph,
   a: NextLink,
   blockquote: Blockquote,
