@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import Image from "next/image";
+import IncrementalConfig from "@/incremental.config";
 
 const AuthorHero = () => {
   return (
@@ -13,8 +14,8 @@ const AuthorHero = () => {
         <Link href="/author">
           <Avatar>
             <Image
-              src="/images/profile.jpg"
-              alt="Peng Ying"
+              src={IncrementalConfig.author.imageUrl}
+              alt={IncrementalConfig.author.name}
               width={40}
               height={40}
             />
@@ -27,9 +28,7 @@ const AuthorHero = () => {
           }}
         >
           <Typography variant="heroAuthor">
-            I&apos;m happiest at the intersection of product and engineering. I
-            enjoying understanding technology and businesses strategy. I&apos;ve
-            grown products from 0 to 1 and 1 to 1 billion.
+            {IncrementalConfig.author.blurb}
           </Typography>
         </Box>
       </Stack>
