@@ -5,6 +5,8 @@ import type {} from "@mui/lab/themeAugmentation";
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     logo: React.CSSProperties;
+    authorName: React.CSSProperties;
+    authorDetails: React.CSSProperties;
     heroFooter: React.CSSProperties;
     heroName: React.CSSProperties;
     heroTitle: React.CSSProperties;
@@ -21,6 +23,8 @@ declare module "@mui/material/styles" {
     heroName?: React.CSSProperties;
     heroTitle?: React.CSSProperties;
     heroBody?: React.CSSProperties;
+    authorName?: React.CSSProperties;
+    authorDetails?: React.CSSProperties;
     quote?: React.CSSProperties;
     heroAuthor?: React.CSSProperties;
     postTitle?: React.CSSProperties;
@@ -52,6 +56,8 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     logo: true;
+    authorName: true;
+    authorDetails: true;
     heroFooter: true;
     heroName: true;
     heroTitle: true;
@@ -130,6 +136,16 @@ const theme = createTheme({
       fontFamily: roboto.style.fontFamily,
       fontSize: "3.0rem",
       fontWeight: 700,
+    },
+    authorName: {
+      fontFamily: roboto.style.fontFamily,
+      fontSize: "2.0rem",
+      fontWeight: 700,
+    },
+    authorDetails: {
+      fontFamily: roboto.style.fontFamily,
+      fontSize: "18px",
+      fontWeight: 400,
     },
     heroName: {
       fontFamily: roboto.style.fontFamily,
