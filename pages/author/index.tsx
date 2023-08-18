@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Layout from "../../components/layout";
 
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
 import { getCopyrightDate } from "../../lib/posts";
 import Typography from "@mui/material/Typography";
@@ -17,7 +17,6 @@ import IncrementalConfig from "@/incremental.config";
 import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import Head from "next/head";
-import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
 import Paragraph from "@/components/paragraph";
 import Link from "next/link";
@@ -79,7 +78,7 @@ export default function Page({ copyrightDate }: any) {
               fontSize: 48,
             }} />
             <Paragraph>
-              I'm an engineer turned product manager. I love getting hands on
+              I&apos;m an engineer turned product manager. I love getting hands on
               and prefer to learn by doing, and I enjoy dissecting how things
               work and jamming on new ideas.
             </Paragraph>
@@ -100,10 +99,10 @@ export default function Page({ copyrightDate }: any) {
               building out the developer experience and platform.
             </Paragraph>
             <Paragraph>
-              I've found the articles, instructions, tools, and repos that other
+              I&apos;ve found the articles, instructions, tools, and repos that other
               people share to be incredibly useful and want to give back by sharing the
-              knowledge, expertise, and stories that I've acquired over the
-              years (possibly with some snark).  I'll do my best to share an informed perspective and I want to use this medium to get feedback and start discussions.
+              knowledge, expertise, and stories that I&apos;ve acquired over the
+              years (possibly with some snark).  I&apos;ll do my best to share an informed perspective and I want to use this medium to get feedback and start discussions.
             </Paragraph>
           </Paper>
         </Box>
