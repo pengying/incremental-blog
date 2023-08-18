@@ -17,7 +17,15 @@ const Paragraph = styled('p', {
     }, 
     'b': {
         fontWeight: 900,
-    }
+    },
+    'a:link': {
+        color: theme.palette.action.hover,
+        textDecoration: 'none',
+    }, 
+    'a:visited' : {
+        color: theme.palette.action.hover,
+        textDecoration: 'none',
+      }
 }));
 
 export default Paragraph;

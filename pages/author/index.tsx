@@ -9,7 +9,11 @@ import { styled, useTheme } from "@mui/material/styles";
 import { getCopyrightDate } from "../../lib/posts";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Quote from "@mui/icons-material/FormatQuoteRounded";
+
 import IncrementalConfig from "@/incremental.config";
+
 import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import Head from "next/head";
@@ -61,26 +65,47 @@ export default function Page({ copyrightDate }: any) {
           <Typography variant="authorName">
             {IncrementalConfig.author.name}
           </Typography>
-          <Paragraph>
-            I'm a father, engineer and product manager. I love getting hands on
-            and prefer to learn by doing, and I enjoy dissecting how things work
-            and jamming on new ideas.
-          </Paragraph>
-          <Paragraph>
-            Previously, I spent 14 years at Elgoogs building out products like{" "}
-            <Link
-              href="https://developers.google.com/standard-payments"
-              target="_blank"
-            >
-              Google Standard Payments
-            </Link>
-            , Google Checkout, Android Wear, Google TV, and Chromecast.
-          </Paragraph>
-          <Paragraph>
-            I've found the articles and instructions that other people share to
-            be incredibly useful and want to share the knowledge and expertise
-            that I've acquired over the years.
-          </Paragraph>
+          <Paper
+            elevation={0}
+            sx={{
+              padding: 8,
+              marginTop: 5,
+              backgroundColor: "#1D2128",
+            }}
+          >
+            <Quote sx={{
+              margin: '0 auto 20px',
+              width: '100%',
+              fontSize: 48,
+            }} />
+            <Paragraph>
+              I'm an engineer turned product manager. I love getting hands on
+              and prefer to learn by doing, and I enjoy dissecting how things
+              work and jamming on new ideas.
+            </Paragraph>
+            <Paragraph>
+              I spent 14 years at Elgoogs building the developer experience for
+              products like&nbsp; 
+              <Link
+                href="https://developers.google.com/standard-payments"
+                target="_blank"
+              >
+                Google Standard Payments
+              </Link>
+              , Google Checkout, Android Wear, Google TV, and Chromecast. Then
+              two years at{" "}
+              <Link href="https://dev.synctera.com" target="_blank">
+                Synctera
+              </Link>{" "}
+              building out the developer experience and platform.
+            </Paragraph>
+            <Paragraph>
+              I've found the articles, instructions, tools, and repos that other
+              people share to be incredibly useful and want to give back by sharing the
+              knowledge, expertise, and stories that I've acquired over the
+              years (possibly with some snark).  I'll do my best to share an informed perspective and I want to use this medium to get feedback and start discussions.
+            </Paragraph>
+          </Paper>
         </Box>
       </Container>
     </Layout>
