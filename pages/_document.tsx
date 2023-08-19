@@ -12,7 +12,6 @@ import { AppType } from "next/app";
 import theme from "../styles/theme/mui-theme";
 import createEmotionCache from "../lib/createEmotionCache";
 import { MyAppProps } from "./_app";
-import Script from "next/script";
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
@@ -27,13 +26,7 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
         {emotionStyleTags}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QKCWGT5WXP" />
-        <Script id="g-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-QKCWGT5WXP');`}
-        </Script>
+
       </Head>
       <body>
         <Main />
