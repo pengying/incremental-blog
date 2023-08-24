@@ -66,7 +66,7 @@ Author information is defined in a few places.  I'll refactor it all out to a js
 Socials are defined in `/components/socials.tsx`.  This will also likely be refactored into a config file instead of hardcoded in the template.
 
 ### Modifying Theme
-Following the general pttern the theme also needs to be refactored and styling is handled in the general theme template some in individual components.
+Following the general pattern the theme also needs to be refactored and styling is handled in the general theme template some in individual components. 
 
 ## TODOs
 ### P0s
