@@ -3,6 +3,7 @@ import { getPostSlugs, getPostData, getCopyrightDate } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
+import remarkEmoji from "remark-emoji";
 import rehypePrism from "rehype-prism-plus";
 
 import Image from "next/image";
@@ -27,6 +28,8 @@ import Typography from "@mui/material/Typography";
 import ArticleSummary from "@/components/article-summary";
 import Stack from "@mui/material/Stack";
 import { useTheme } from "@emotion/react";
+import Script from "next/script";
+import Container from "@mui/material/Container";
 
 // TODO(peng): add metadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 
@@ -54,7 +57,7 @@ const components = {
   Image: ResponsiveImage,
   p: Paragraph,
   a: NextLink,
-  blockquote: Blockquote,
+  Blockquote: Blockquote,
   h1: Headings.h2,
   h2: Headings.h2,
   h3: Headings.h3,
@@ -82,7 +85,7 @@ export async function getStaticProps({ params }: { params: any }) {
   const frontmatter = await getPostData(params.slug);
   const postData = await serialize(frontmatter.content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkEmoji],
       rehypePlugins: [rehypePrism],
       format: "mdx",
     },
@@ -157,7 +160,24 @@ export default function Post({
         }}
       >
         <MDXRemote {...postData} components={components} />
+        <Container maxWidth="md">
+          <div id="disqus_thread"></div>
+        </Container>
       </Box>
+      <Script type="module" id="mermaid">
+        {`import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });`}
+      </Script>
+      {/* <Script id="disqus">
+        {`
+        (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://incremental-1.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        `}
+      </Script> */}
     </Layout>
   );
 }
@@ -203,6 +223,28 @@ function getHtmlStyles(theme: any) {
       border-radius: 5px;
       width: 100%;
       max-width: 680px;
+
+      ${theme.breakpoints.only("md")} : {
+        max-width: 507px;
+      }
+
+      ${theme.breakpoints.down("md")} : {
+        max-width: 486px;
+        margin: 0 auto 25px;
+      }
+    }
+
+    div.Image__XSmall {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      max-width: 100%;
+      height: auto;
+      z-index: 0;
+      margin: 15px auto 50px;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 480px;
 
       ${theme.breakpoints.only("md")} : {
         max-width: 507px;
@@ -271,4 +313,3 @@ function getHtmlStyles(theme: any) {
     }
   `;
 }
-
