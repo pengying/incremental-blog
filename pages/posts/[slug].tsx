@@ -120,7 +120,7 @@ export default function Post({
         <title>{frontmatter.title}</title>
         <meta property="og:title" content={frontmatter.title} />
         <meta property="og:description" content={frontmatter.excerpt} />
-        <meta property="og.image" content={"https://incremental.fyi" + frontmatter.hero} />
+        <meta property="og:image" content={"https://incremental.fyi" + frontmatter.hero} />
       </Head>
       <style jsx>{prismStyles}</style>
       <style jsx>{htmlStyles}</style>
