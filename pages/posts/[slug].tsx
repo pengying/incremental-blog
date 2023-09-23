@@ -28,6 +28,7 @@ import Typography from "@mui/material/Typography";
 import ArticleSummary from "@/components/article-summary";
 import Stack from "@mui/material/Stack";
 import { useTheme } from "@emotion/react";
+import Head from 'next/head'
 import Script from "next/script";
 import Container from "@mui/material/Container";
 
@@ -115,6 +116,12 @@ export default function Post({
 
   return (
     <Layout copyrightDate={copyrightDate}>
+      <Head>
+        <title>{frontmatter.title}</title>
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.excerpt} />
+        <meta property="og.image" content={"https://incremental.fyi" + frontmatter.hero} />
+      </Head>
       <style jsx>{prismStyles}</style>
       <style jsx>{htmlStyles}</style>
       <ConstrainedStack spacing={2}>
@@ -310,6 +317,17 @@ function getHtmlStyles(theme: any) {
       width: 100%;
       padding-top: 6px;
       opacity: 0.5;
+    }
+
+    code {
+      white-space : pre-wrap !important;
+    }
+
+    blockquote > p {
+      padding: 18px;
+      background-color: aliceblue;
+      border-left: 5px solid #eee;
+      border-radius: 5px;
     }
   `;
 }

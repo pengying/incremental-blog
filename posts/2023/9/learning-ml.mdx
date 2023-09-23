@@ -1,0 +1,228 @@
+---
+title: Learning ML
+date: '2023-09-22'
+author: Peng Ying
+hero: /images/robot.png
+publish: true
+excerpt: That's it!  You have a LLM running on your machine that you can interact with via an API and all you had to do was install some software and copy and paste a few lines.  What an amazing ecosystem.
+tags:
+  - Machine Learning
+---
+I know I said that I'd fix mobile for the blog and Analytics says that I should.
+
+<div className="Image__XSmall">
+  <Image
+    src="/images/analytics_screen.png"
+    alt="analytics of viewers"
+  />
+</div>
+
+I also said that I would write a blog post about creating APIs.  And, yeah I haven't gotten to that either.  I've just been so engrossed in learning more about ML.
+
+In this post I want to share my learnings from trial and errors playing with ML.  I dabbled a bit in college but it's mostly a new subject matter for me.  There's so much to learn that it can be hard to focus and prioritize.  I'm trying to attack from both sides.
+
+- Technical understanding of how machine learning works starting from gradient descent and building up through CNN / RNN to transformers 
+- Running models on my machine to and seeing firsthand what they're capable of and understanding the toolchain / interaction pattern
+
+My hypothesis is that by seeing the end product, I'll better understand how the things I'm learning bottom up can fit in the big picture.
+
+<Blockquote>Also there's just something super cool about seeing it run on your machine instead of on OpenAI or Google's nebulous cloud.</Blockquote>
+
+I'm still naive in the space but every additional piece of understanding gives me more hope that I'll be able to modify these models for my own ideas and products. 
+
+## The Wow
+Get hyped!  ML is more accessible than most people think.  I have a 2 year old laptop with a 3080 and I can run a 7b parameter LLM or Stable Diffusion model locally in a few steps.  Fun fact, the header image was generated locally from Stable Diffusion 2.1 but this post was written with out the help of any chat bots.
+
+The following instructions are focused on Nvidia GPUs since that's what I have, but there's also a section at the [bottom](#CPU-LLMs) on CPU LLMs so you can run it on your Mac or non Nvidia devices.
+
+> I shifted from Windows WSL2 to Ubuntu as I was getting some download errors that I just couldn't figure out.  You can try it in Windows but I kept receiving the following error after downloading a 10gb file and had to restart the download every retry.
+> I think this error was actually a red herring and the issue was caused by insufficient VRAM but I didn't have the expertise to debug further beyond running locally instead of a container.
+
+```bash
+RuntimeError: An error occurred while downloading using hf_transfer. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+```
+
+
+### Prerequisites
+
+You'll need to have:
+
+- [Docker](https://docs.docker.com/engine/install/).
+- Latest Nvidia drivers
+
+```bash
+sudo apt install nvidia-driver-535
+```
+
+- [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+- [Request access](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf) to Facebook's Llama 2 model
+- [HuggingFace token](https://huggingface.co/settings/tokens)
+> One thing I haven't figured out is how to get docker access to my GPU without root.  You may see some instructions about starting docker w/o sudo on the web but I never figured out how to get those instructions to work.
+
+### Running The LLM 
+The two most popular open source LLMs are [Facebooks Llama](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf) and [TII's Falcon](https://huggingface.co/tiiuae/falcon-7b).  I tested both and my personal preference is Llama so that'll be the first set of instructions.
+
+This is my own version of Hugging Face's [text generation inference](https://github.com/huggingface/text-generation-inference) instructions, more detail on the tool can be found in the repo.
+
+#### Llama 2
+
+```bash
+model=meta-llama/Llama-2-7b-chat-hf 
+volume=$PWD # share a volume with the Docker container to avoid downloading weights every run
+token={HUGGING_FACE_HUB_TOKEN}
+
+sudo docker run -e HUGGING_FACE_HUB_TOKEN=$token --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:1.0.3 --model-id $model --quantize bitsandbytes
+```
+
+These commands set some environment variables then tell docker to load the image and run the model.
+
+- From what I understand the Llama 2 chat hf model is fine tuned for chat and hf stands for human feedback?  
+- Quantize bits and bytes gets the model to fit in around 14GB of VRAM.  Otherwise I was getting errors during memory allocation.  There's some papers about how [quantizing](https://github.com/TimDettmers/bitsandbytes) works but I haven't wrapped my head around it yet.
+
+#### Falcon
+
+```bash
+model=tiiuae/falcon-7b-instruct
+volume=$PWD # share a volume with the Docker container to avoid downloading weights every run
+
+sudo docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:1.0.3 --model-id $model --quantize bitsandbytes
+```
+
+Falcon isn't gated by an agreement so you don't need a hugging face token to download the model.
+
+Now you can hang out for a while as the model downloads and converts.
+
+Once the model is ready to use, you'll get some logs in your terminal like the following.
+
+```bash
+2023-09-23T01:44:05.457262Z  INFO download: text_generation_launcher: Successfully downloaded weights.
+2023-09-23T01:44:05.457914Z  INFO shard-manager: text_generation_launcher: Starting shard rank=0
+2023-09-23T01:44:15.470495Z  INFO shard-manager: text_generation_launcher: Waiting for shard to be ready... rank=0
+2023-09-23T01:44:24.671901Z  INFO text_generation_launcher: Server started at unix:///tmp/text-generation-server-0
+
+2023-09-23T01:44:24.680272Z  INFO shard-manager: text_generation_launcher: Shard ready in 19.221579496s rank=0
+2023-09-23T01:44:24.775021Z  INFO text_generation_launcher: Starting Webserver
+2023-09-23T01:44:25.295505Z  WARN text_generation_router: router/src/main.rs:349: `--revision` is not set
+2023-09-23T01:44:25.295522Z  WARN text_generation_router: router/src/main.rs:350: We strongly advise to set it to a known supported commit.
+2023-09-23T01:44:25.833055Z  INFO text_generation_router: router/src/main.rs:371: Serving revision 08751db2aca9bf2f7f80d2e516117a53d7450235 of model meta-llama/Llama-2-7b-chat-hf
+2023-09-23T01:44:25.835941Z  INFO text_generation_router: router/src/main.rs:213: Warming up model
+2023-09-23T01:44:27.365649Z  INFO text_generation_router: router/src/main.rs:246: Setting max batch total tokens to 10368
+2023-09-23T01:44:27.365666Z  INFO text_generation_router: router/src/main.rs:247: Connected
+2023-09-23T01:44:27.365673Z  WARN text_generation_router: router/src/main.rs:252: Invalid hostname, defaulting to 0.0.0.0
+```
+
+At this point the LLM is ready to use.  I'm pushing against my VRAM limits with this quantized model, if you have a graphics card with less memory you'll probably want to 4 bit quantize with `--quantize bitsandbytes-nf4` or `--quantize bitsandbytes-fp4`.  Below is the output of `nvidia-smi` for my laptop.
+
+```bash
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.104.05             Driver Version: 535.104.05   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 3080 ...    On  | 00000000:01:00.0  On |                  N/A |
+| N/A   43C    P8              20W / 115W |  14421MiB / 16384MiB |     29%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      2006      G   /usr/lib/xorg/Xorg                         1043MiB |
+|    0   N/A  N/A      2231      G   /usr/bin/gnome-shell                        180MiB |
+|    0   N/A  N/A      3990      G   /usr/lib/insync/insync                        3MiB |
+|    0   N/A  N/A     11968      G   ...ures=SpareRendererForSitePerProcess      152MiB |
+|    0   N/A  N/A     16987      G   ...7209246,18288670158640644548,262144      241MiB |
+|    0   N/A  N/A     18540      G   ...sion,SpareRendererForSitePerProcess       52MiB |
+|    0   N/A  N/A     19432      G   /usr/bin/nautilus                            11MiB |
+|    0   N/A  N/A     35367      C   /opt/conda/bin/python3.9                  12594MiB |
++---------------------------------------------------------------------------------------+
+```
+
+### Interacting With The LLM
+
+To interact with the LLM you can send HTTP requests to the container
+
+```bash
+curl 127.0.0.1:8080/generate_stream \
+    -X POST \   
+    -d '{"inputs":"how easy is it to learn machine learning","parameters":{"max_new_tokens":200}}' \
+    -H 'Content-Type: application/json'
+```
+
+`text-generation-inference` exposes endpoints defined in OpenAPI.  Documentation on parameters can be found [here](https://huggingface.github.io/text-generation-inference/).
+
+You'll get a stream of output as a response with each line representing a token and it's probability.  And at the end of the output is a concatenated string of tokens for a full response.
+
+```bash
+data:{"token":{"id":14009,"text":" algorithms","logprob":-0.00030207634,"special":false},"generated_text":null,"details":null}
+
+data:{"token":{"id":322,"text":" and","logprob":-2.3841858e-7,"special":false},"generated_text":null,"details":null}
+
+data:{"token":{"id":4733,"text":" models","logprob":-0.0000026226044,"special":false},"generated_text":"?\n\nMachine learning is a subfield of artificial intelligence (AI) that involves developing algorithms and statistical models that enable computers to learn from data, make decisions, and improve their performance on a specific task over time.\nMachine learning is a rapidly growing field, with a wide range of applications in areas such as:\n\n1. Natural Language Processing (NLP): Developing algorithms and models that enable computers to understand, interpret, and generate human language.\n2. Computer Vision: Developing algorithms and models that enable computers to interpret and understand visual data from images and videos.\n3. Predictive Modeling: Developing algorithms and models that enable computers to make predictions about future events or outcomes based on past data.\n4. Recommendation Systems: Developing algorithms and models that enable computers to recommend products or services based on a user's past behavior or preferences.\n5. Fraud Detection: Developing algorithms and models","details":null}
+```
+
+That's it!  You have a LLM running on your machine that you can interact with via an API and all you had to do was install some software and copy and paste a few lines.  What an amazing ecosystem.
+
+If you're looking for a web UI to interact with the LLM, take a look at [oobabooga](https://github.com/oobabooga/text-generation-webui).
+
+## CPU LLMs
+If you're on a Mac or don't have a GPU, take a look at the [llama.cpp](https://github.com/ggerganov/llama.cpp).  I haven't ran it myself, but it looks like it's rewritten the underlying tensor math methods in `C/C++`.
+
+Benefits are no dependency on CUDA and perhaps a speed up over Python.  Also instead of being limited by VRAM, I think it relies on system RAM which is much cheaper and easier to upgrade.
+
+## Stable Diffusion
+
+We can also use docker to simplify configuring our environment for stable diffusion.  I haven't found a docker image that contains everything you need,  but you can just copy and paste the the following commands and get something running.  These commands are based off the [stable diffusion instructions](https://huggingface.co/stabilityai/stable-diffusion-2-1) and tailored for using a container.  This will save the generated images to the directory that you started docker from.
+
+> Huggingface libraries download models to the ~/.cache directory.  I haven't investigated enough to figure out how to specify a different directory so you may end up downloading the model multiple times if the container is deleted.
+
+To start a shell with python, pytorch, cuda, etc configured 
+```bash
+sudo docker run -it --name stable-diffusion --gpus all --shm-size 1g -v $PWD:/images pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+```
+
+You'll want to save images to the mounted volume so we'll change to `/images`.  Stable diffusion has some library dependencies so we'll install those and start the python interpreter.
+```bash
+cd /images
+pip install diffusers transformers accelerate scipy safetensors
+python
+```
+
+In Python, we'll import the libraries, create a pipeline, create a prompt to generate the image and save it.
+
+```python
+import pytorch
+from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
+
+model_id = "stabilityai/stable-diffusion-2-1"
+
+# Use the DPMSolverMultistepScheduler (DPM-Solver++) scheduler here instead
+pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+pipe = pipe.to("cuda")
+
+prompt = "a photo of an astronaut riding a horse on mars"
+image = pipe(prompt).images[0]
+    
+image.save("astronaut_rides_horse.png")
+```
+
+<div className="Image__XSmall">
+  <Image
+    src="/images/astronaut_rides_horse.jpg"
+    alt="astronaut riding horse on mars"
+  />
+</div>
+
+And boom, an astronaut riding a horse.  If you're interested in digging deeper into the Stable Diffusion ecosystem, there's a tool for pipelines [ComfyUI](https://github.com/comfyanonymous/ComfyUI) and a [web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+
+
+## Recap
+Cool, cool, cool.  You now have LLM and Stable diffusion on your local machine.  You can kind of see how the models + infrastructure work together.  And now that you know how to run models you can start thinking about how to tweak them to your own needs and maybe about tieing multiple models together to create real valuable products.
+
+## What's Next(For The Blog)?
+Mobile optimization, a post about creating APIs and a post about learning the basics of ML aka gradient descent to neural networks.  Stay tuned!  And always let me know if this was too simplistic, too complicated or just right.
