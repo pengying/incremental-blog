@@ -325,7 +325,7 @@ function getHtmlStyles(theme: any) {
 
     blockquote > p {
       padding: 18px;
-      background-color: aliceblue;
+      background-color: ${theme.palette.grey[600]};
       border-left: 5px solid #eee;
       border-radius: 5px;
     }
