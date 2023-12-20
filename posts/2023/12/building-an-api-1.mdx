@@ -2,7 +2,7 @@
 title: Building an API
 date: '2023-12-18'
 author: Peng Ying
-hero: /images/robot.png
+hero: /images/building-an-api-1.png
 publish: false
 excerpt: That's it!  You have a LLM running on your machine that you can interact with via an API and all you had to do was install some software and copy and paste a few lines.  What an amazing ecosystem.
 tags:
@@ -10,10 +10,63 @@ tags:
   - DevEx
 ---
 ## Overview
-So you want to create a new world class API with a developer experience that differentiates you from your competitors.  This is going to be fun.  Let's get into it and discuss all of the attributes of a great developer experience and API design.  This series of blog posts is written with the expectation that you have some technical expertise and understanding of how a customers front end and backend can interact with your services.
+So you want to create a new world class API and a developer experience that differentiates you from your competitors.  I hope that I can shed a bit of light on the topic.  Let's get into it and discuss all of the attributes of a great developer experience, API design and considerations to make.
 
-The way I like to frame this problem is first by understanding the customer.  The structure of your API will be defined by how you expect your customers to interact with it.
+> Note: This series of blog posts will focus on web APIs.  Building a local API like interfacing with hardware or hooks for a platform framework have a separate set of considerations.
 
-> Note: This series of blog posts will focus on web APIs.  Building a local API like interfacing with hardware has a separate set of considerations.
+So what is a great developer experience?  I think the easiest way to describe many of the attributes of a great experince is with a few examples.  My personal gold standards(for different reasons) are Stripe, Mozilla, Flutter.
 
-Is your customer's client app going to communicate directly with 
+### Stripe
+Stripe has democratized accepting card payments online.  While on the surface card payments may seem simple, enabling it can actually be incredibly complex.  There's a number of rules around securing card data, what can be stored where.  A number of card networks beyond the big 4.  There's both customer and merchant fraud and chargebacks and many more complexities.  Stripe has simplifed that mostly down to a copy and paste snippet.
+
+#1. *A great developer experience(and product) starts with simplifing something complex.*
+
+In addition Stripe led documentation innovation creating the 3 column layout.  They understood the pain points of the existing documentation experience and improved upon it eg examples of requests in reference documentation instead of just a description of the field.    
+
+#2 *Understanding developer needs and pain points and providing content / tools to address.* 
+
+The last major Stripe superlative for me is they have great tooling for simulation and testing.  As an integrator you can test various card types, trigger specific flows, and test all of the edge cases that your implementation needs to handle.  Imagine how painful it would be if you couldn't test some functionality of your product until you saw the case occur in production.  
+
+#3 *Provides testing and simulation tools to trigger all relevant use cases and flows.* 
+
+### Mozilla
+Mozilla is my defacto reference for web APIs.  Their breadth and depth of web documentation in my mind is unparalleled.  In my experience with vanilla web developement I don't think that there's ever been a case where I couldn't find reference documentation or a guide on MDN.  
+
+#4 *High level of coverage for 
+
+And many of the guides include multiple cases and extensions
+
+### Flutter
+Flutter is my dream experience as a developer.  
+
+#5 Thoughtful, integratred experience
+
+#6 Easy to debug
+
+
+
+I'll start with a high level overview of considerations for API and developer experience design.
+- Customer usage
+- Schema definition
+- Authentication
+- Versioning / Interoperability / Deprecation
+- Permissions
+- Idempotency & Retries
+- Monitoring & Alerts
+- Rate limits & timeouts
+- Engineering experience
+  - Style guide
+  - Client library generation
+  - Merging Schema
+  - CI / CD
+  - Review process and readability
+  - Release process
+  - Documentation
+  - Testing / Postman
+- Flexibility vs Simplicity
+- 
+
+
+The way I like to frame this problem is first by understanding the customers. This will inform the decision of a SDL to choose. The structure of your API will be defined by how you expect your customers to interact with it.
+
+Is your customer's client app going to communicate directly with your services or are they going to proxy all of their requests through your servers?  Are your customers other internal 
