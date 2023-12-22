@@ -14,7 +14,7 @@ So you want to create a new world class API and a developer experience that diff
 
 So what is a great developer experience?  I think the easiest way to describe many of the attributes of a great experince is with a few examples.  My personal gold standards(for different reasons) are Stripe, MDN, and Flutter.
 
-## Examples
+## Developer Experience Examples
 
 ### Stripe
 
@@ -50,7 +50,7 @@ In addition Stripe innovated in documentation creating the 3 column layout.  The
   <figcaption>Stripe's 3 column layout</figcaption>
 </div>
 
-#### 2. *Understanding developer needs and pain points and making it efficient to understand the product.* 
+#### 2. *Understanding developer needs and pain points and making it simple to understand the product.* 
 <br />
 The last major Stripe superlative for me is they have great tooling for simulation and testing.  As an integrator you can test various card types, trigger specific flows, and test all of the edge cases that your implementation needs to handle.  Imagine how painful it would be if you couldn't test some functionality of your product until you saw the case occur in production.  
 
@@ -64,39 +64,52 @@ Mozilla is my defacto reference for web APIs.  Their breadth and depth of web do
 <br />
 And each of the examples or snippets of code work or at least state compatability with browser version.  I don't have to deal with figuring out if it's an issue with my configuration or the API.
 
-#### 5. *Documentation is maintained and upto date with minimal errors on examples* 
+#### 5. *Documentation is maintained and up to date with minimal errors on examples* 
 <br />
 
 ### Flutter
-Flutter is my dream experience as a developer.  It's meant to be a write once compile to web, Android, iOS platform.  In the past, I feel like getting setup correct was a large hurdle, setting up the Android SDK, defining run targets, defining debug config etc.  Flutter has a helper to check your system config and plugins for the most popular IDEs.  This means that I can easily get my config right and focus on coding and debugging.  Anecdotally I tried to first build this blog on Gatsby but I could not for the life of me figure out how to configure debugging for Gatsby + Typescript.  The inability to debug forced me to rewrite in Next.js where the VScode source maps worked correctly.
+Flutter is my dream experience as a developer.  It's meant to be a write once compile to web, Android, iOS platform.  In the past, I feel like getting setup correct was a large hurdle, setting up the Android SDK, defining run targets, defining debug config etc.  Flutter has a helper to check your system config and plugins for the most popular IDEs.  This means that I can easily get my config right and focus on coding and debugging.  Anecdotally I tried to first build this blog on Gatsby.  Maybe I'm a newb but I could not for the life of me figure out how to configure debugging for Gatsby + Typescript.  The inability to debug forced me to rewrite in Next.js where the VScode source maps worked correctly.
 
-#### 7. *Thoughtful, integrated experience with tooling to simplify debugging*
+#### 7. *Thoughtful, integrated experience and tooling to simplify debugging*
+<br />
 
 There are some other aspects of a developer experience that given the right circumstances may be important as well such as:
 - Thriving communities can supplement insufficient documentation and drive viral adoption
-- Client libraries are usually expected and can simplify implementation
+- Client libraries are usually expected and can simplify implementation vs autogenerating from schema
+
+## API Considerations
+Awesome, now we have an idea of where we want the developer experience to go let's cover some considerations for API design.
+
+I'll start with a high level overview of considerations for API and developer experience design.  And I'll dig into each consideration in subsequent blog posts.
+
+#### Customers usage
+
+Who are your customers and how will they use the API?  Is it from their FE to your BE? BE to BE?  Who's going to be the source of truth?  Will your customer want to run business analytics and how do they access the data?
+
+#### Flexibility vs Simplicity
+What stage is your company and what do you want to optimize for?  Flexibility means using the API like lego building blocks.  But accomplishing a task may take more steps.  Simplicity means focuing the API and minimizing steps for a task.
+
+#### Schema definition
+There are a few schema defination languages (SDL) like OpenAPI, GraphQl, GRPC, JsonRPC, json:api.  A SDL and it's associated tooling can have huge impacts on your documentation, client libraries, engineering experience.
+
+#### Authentication
+Authentication is usually dependent on you expect your customer to use your API.  It could be a public key, jwt, bearer token, basic auth user and password.
 
 
-I'll start with a high level overview of considerations for API and developer experience design.
-- Customer usage
-- Schema definition
-- Authentication
 - Versioning / Interoperability / Deprecation
 - Permissions
 - Idempotency & Retries
 - Monitoring & Alerts
 - Rate limits & timeouts
-- Engineering experience
+- Engineering experience - What are the steps and tooling for your engineering team to build the API and developer experience?
   - Style guide
   - Client library generation
   - Merging Schema
   - CI / CD
   - Review process and readability
   - Release process
-  - Documentation
-  - Testing / Postman
-- Flexibility vs Simplicity
-- 
+- Documentation
+- Testing / Postman
 
 
 The way I like to frame this problem is first by understanding the customers. This will inform the decision of a SDL to choose. The structure of your API will be defined by how you expect your customers to interact with it.
