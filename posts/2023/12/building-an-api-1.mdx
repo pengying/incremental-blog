@@ -10,42 +10,71 @@ tags:
   - DevEx
 ---
 ## Overview
-So you want to create a new world class API and a developer experience that differentiates you from your competitors.  I hope that I can shed a bit of light on the topic.  Let's get into it and discuss all of the attributes of a great developer experience, API design and considerations to make.
+So you want to create a new world class API and a developer experience that differentiates you from your competitors.  I hope that I can shed a bit of light on the topic.  Let's get into it and discuss all of the attributes of a great developer experience, API design and considerations to make.  This series of blog posts will focus on web APIs.  Building a local API like interfacing with hardware or hooks for a platform framework have a separate set of considerations.  Lets start with what makes a great developer experience then jump into API design.  
 
-> Note: This series of blog posts will focus on web APIs.  Building a local API like interfacing with hardware or hooks for a platform framework have a separate set of considerations.
+So what is a great developer experience?  I think the easiest way to describe many of the attributes of a great experince is with a few examples.  My personal gold standards(for different reasons) are Stripe, MDN, and Flutter.
 
-So what is a great developer experience?  I think the easiest way to describe many of the attributes of a great experince is with a few examples.  My personal gold standards(for different reasons) are Stripe, Mozilla, Flutter.
+## Examples
 
 ### Stripe
-Stripe has democratized accepting card payments online.  While on the surface card payments may seem simple, enabling it can actually be incredibly complex.  There's a number of rules around securing card data, what can be stored where.  A number of card networks beyond the big 4.  There's both customer and merchant fraud and chargebacks and many more complexities.  Stripe has simplifed that mostly down to a copy and paste snippet.
+
+Stripe has democratized accepting card payments online.  While on the surface card payments may seem simple, enabling it can actually be incredibly complex.  There's a number of rules around securing card data, what can be stored where.  A number of card networks beyond the big 4.  There's both customer and merchant fraud and chargebacks and many more complexities.  Stripe has simplifed that mostly down to copy and paste snippets.
+
+```js
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: '{{PRICE_ID}}',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}/success.html`,
+    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+  });
+
+  res.redirect(303, session.url);
+```
 
 #### 1. *A great developer experience(and product) starts with simplifing something complex.*
 <br />
-In addition Stripe led documentation innovation creating the 3 column layout.  They understood the pain points of the existing documentation experience and improved upon it eg examples of requests in reference documentation instead of just a description of the field.    
 
-#### 2. *Understanding developer needs and pain points and providing content / tools to address.* 
+In addition Stripe innovated in documentation creating the 3 column layout.  They understood the pain points of the existing documentation experience and improved upon it eg examples of requests in reference documentation instead of just a description of the field.  Stripe docs are a night and day difference from my starting documentation format [Javadocs](https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html) (I still &lt;3 GSON, worked with Joel and Inderjeet while in the payments org at Google).      
 
+<div className="Image__Medium">
+  <Image
+    src="/images/stripe-reference-docs.png"
+    alt="Stripes 3 column layout"
+  />
+  <figcaption>Stripe's 3 column layout</figcaption>
+</div>
+
+#### 2. *Understanding developer needs and pain points and making it efficient to understand the product.* 
+<br />
 The last major Stripe superlative for me is they have great tooling for simulation and testing.  As an integrator you can test various card types, trigger specific flows, and test all of the edge cases that your implementation needs to handle.  Imagine how painful it would be if you couldn't test some functionality of your product until you saw the case occur in production.  
 
-#### 3 *Provides testing and simulation tools to trigger all relevant use cases and flows.* 
+#### 3. *Provides testing and simulation tools to trigger all relevant use cases and flows.* 
+<br />
 
 ### Mozilla
-Mozilla is my defacto reference for web APIs.  Their breadth and depth of web documentation in my mind is unparalleled.  In my experience with vanilla web developement I don't think that there's ever been a case where I couldn't find reference documentation or a guide on MDN.  And it means that I don't have to waste time looking through sample code, Stack Overflow or Reddit to understand how to do use something.
+Mozilla is my defacto reference for web APIs.  Their breadth and depth of web documentation in my mind is unparalleled.  In my experience with vanilla web developement I don't think that there's ever been a case where I couldn't find reference documentation or a guide on MDN.  And many of the guides include multiple cases and related functionality. It means that I don't have to waste time looking through sample code, Stack Overflow or Reddit to understand how to do use something.  
 
-#### 4 *High percentage of documentation coverage for APIs* 
+#### 4. *High percentage of well organized documentation coverage for APIs* 
+<br />
+And each of the examples or snippets of code work or at least state compatability with browser version.  I don't have to deal with figuring out if it's an issue with my configuration or the API.
 
-And each of the examples or snippets of code work.  I haven't experienced 
-#### 5 *Documentation is maintained and upto date with minimal errors on examples* 
-
-And many of the guides include multiple cases and extensions
+#### 5. *Documentation is maintained and upto date with minimal errors on examples* 
+<br />
 
 ### Flutter
-Flutter is my dream experience as a developer.  
+Flutter is my dream experience as a developer.  It's meant to be a write once compile to web, Android, iOS platform.  In the past, I feel like getting setup correct was a large hurdle, setting up the Android SDK, defining run targets, defining debug config etc.  Flutter has a helper to check your system config and plugins for the most popular IDEs.  This means that I can easily get my config right and focus on coding and debugging.  Anecdotally I tried to first build this blog on Gatsby but I could not for the life of me figure out how to configure debugging for Gatsby + Typescript.  The inability to debug forced me to rewrite in Next.js where the VScode source maps worked correctly.
 
-#5 Thoughtful, integratred experience
+#### 7. *Thoughtful, integrated experience with tooling to simplify debugging*
 
-#6 Easy to debug
-
+There are some other aspects of a developer experience that given the right circumstances may be important as well such as:
+- Thriving communities can supplement insufficient documentation and drive viral adoption
+- Client libraries are usually expected and can simplify implementation
 
 
 I'll start with a high level overview of considerations for API and developer experience design.
