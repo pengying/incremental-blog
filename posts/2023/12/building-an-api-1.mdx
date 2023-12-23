@@ -93,11 +93,33 @@ What stage is your company and what do you want to optimize for?  Flexibility me
 There are a few schema defination languages (SDL) like OpenAPI, GraphQl, GRPC, JsonRPC, json:api.  A SDL and it's associated tooling can have huge impacts on your documentation, client libraries, engineering experience.
 
 #### Authentication
-Authentication is usually dependent on you expect your customer to use your API.  It could be a public key, jwt, bearer token, basic auth user and password.
+Authentication is usually dependent on how you expect your customer to use your API.  It could be a public key, jwt, bearer token, or basic auth user and password.
+
+#### Versioning / Interoperability / Deprecation
+You will likely need to iterate on your API as you better understand your customer needs and develop your product.  There are a few different strategies for handling breaking changes and deprecating old versions.  Do you want to optimize for minimizing integrator pain or eng team maintenance pain?
+
+#### Permissions
+Can a customer create multiple scoped API keys?  For example, can an API key access all resources?  Can it read and write or only read?  How do you handle permissioning for API Keys?
+
+#### Idempotency & Retries
+Does your API need some sort of recovery mechanism if the network does to prevent duplicate requests?  What happens when you retry the same request?  
+
+#### Webhooks
+How can you notify the customer's services when an event doesn't initiate from one of their requests?  How does the customer subscribe to those events.  How is security handled and what if their services are down when you want to try to notify them?
+
+#### Monitoring & Alerts
+What should you track to be aware of the health of your API?  What is downtime?  Is it latency > a limit?  Is it 500 responses?  Does a single 500 count as down time?  What about intermitten 500 responses?  How can you be notified of these issues?
+
+#### Rate Limiting & Timeouts
+How can you limit 
+
+#### Engineering experience
+
+#### Documentation
+
+#### Testing & Postman
 
 
-- Versioning / Interoperability / Deprecation
-- Permissions
 - Idempotency & Retries
 - Monitoring & Alerts
 - Rate limits & timeouts
