@@ -86,7 +86,7 @@ There are some other aspects of a developer experience that given the right circ
 - Client libraries are usually expected and can simplify implementation vs autogenerating from schema
 
 ## Framework
-Awesome, now we have an idea of where we want the developer experience to go let's break down the components of an API / Developer Experience and build a framework to help us get there.  I would define a component as a touch point for a customer.  Examples of components could be the API itself, client libraries, documentation or webhooks.  All of the pieces of an API that as a customer I would interact with as part of integration (or building / maintaining the API).
+Awesome, now we have an idea of where we want the developer experience to go let's break down the components of an API / Developer Experience and figure out what questions we need to answer to get there.  I would define a component as a touch point for a customer.  Examples of components could be the API itself, client libraries, documentation or webhooks.  All of the pieces of an API that as a customer I would interact with as part of integration (or building / maintaining the API).
 
 I'll start with a high level overview of components then dig into each component and considerations for components in subsequent blog posts along with a end to end practical example.
 
@@ -126,4 +126,5 @@ Do you provide client libraries or does your customer generate client libs from 
 ### Monitoring & Alerts
 What should you track to be aware of the health of your API?  What is downtime?  Is it latency > a limit?  Is it 500 responses?  Does a single 500 count as down time?  What about intermitten 500 responses?  How can you be notified of these issues?
 
+## Next Steps
 In this series of posts, I'll dig into each of these components and try to provide insight into each of these questions.
