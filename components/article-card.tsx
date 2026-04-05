@@ -5,34 +5,36 @@ import Card from "@mui/material/Card";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 
 import Image from "next/image";
 
 export default function ArticleCard({ pageData }: { pageData: any }) {
   const date = new Date(pageData.date);
   return (
-    <CardHero sx={{ borderRadius: 0 }}>
-      <Link href={`/posts/${pageData.slug}`}>
-        <CardMedia sx={{ height: 280 }}>
-          <div style={{ position: "relative", width: "100%", height: "100%" }}>
-            <Image
-              src={pageData.hero}
-              fill
-              sizes="280px, 40vw"
-              style={{ objectFit: "cover" }}
-              alt={pageData.title}
-            />
-          </div>
-        </CardMedia>
+    <CardHero>
+      <Link href={`/posts/${pageData.slug}`} className="card-link">
+        <ImageContainer>
+          <Image
+            src={pageData.hero}
+            fill
+            sizes="(max-width: 900px) 100vw, 420px"
+            style={{ objectFit: "cover" }}
+            alt={pageData.title}
+          />
+          <ImageOverlay />
+        </ImageContainer>
       </Link>
-      <CardContent sx={{ padding: 0 }}>
+      <CardContent sx={{ padding: "24px 0" }}>
         <CardLink href={`/posts/${pageData.slug}`} variant="heroTitle">
           {pageData.title}
         </CardLink>
         <Excerpt variant="heroBody">{pageData.excerpt}</Excerpt>
         <CardFooter variant="heroFooter">
-          {date.toLocaleDateString()} &sdot; {pageData.readingTime.text}
+          {date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })} &sdot; {pageData.readingTime.text}
         </CardFooter>
       </CardContent>
     </CardHero>
@@ -40,12 +42,48 @@ export default function ArticleCard({ pageData }: { pageData: any }) {
 }
 
 const CardHero = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  height: "475px",
+  backgroundColor: theme.palette.background.card,
+  height: "420px",
   boxShadow: "none",
   backgroundImage: "none",
   position: "relative",
+  borderRadius: "12px",
+  overflow: "hidden",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  border: "1px solid rgba(255, 255, 255, 0.06)",
+  "&:hover": {
+    transform: "translateY(-8px)",
+    boxShadow: `
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(232, 213, 181, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05)
+    `,
+    border: "1px solid rgba(232, 213, 181, 0.15)",
+  },
 }));
+
+const ImageContainer = styled("div")({
+  position: "relative",
+  width: "100%",
+  height: "230px",
+  overflow: "hidden",
+  "& img": {
+    transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+  },
+  "&:hover img": {
+    transform: "scale(1.05)",
+  },
+});
+
+const ImageOverlay = styled("div")({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  width: "100%",
+  height: "60px",
+  background: "linear-gradient(to top, rgba(22, 22, 25, 0.8), transparent)",
+  pointerEvents: "none",
+});
 
 const CardLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
@@ -53,23 +91,27 @@ const CardLink = styled(Link)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   marginTop: theme.spacing(2),
   color: theme.palette.primary.light,
-  transition: theme.transitions.create(["color"]),
+  transition: "color 0.2s ease",
   "&:hover": {
     color: theme.palette.action.hover,
   },
 }));
 
-// Ellipsize text after the 3rd line
 const Excerpt = styled(Typography)(({ theme }) => ({
   display: "-webkit-box",
   WebkitLineClamp: "2",
   WebkitBoxOrient: "vertical",
-  height: "rem",
   overflow: "hidden",
+  color: theme.palette.common.copy,
+  marginBottom: theme.spacing(2),
 }));
 
 const CardFooter = styled(Typography)(({ theme }) => ({
   position: "absolute",
-  bottom: 0,
+  bottom: "24px",
   left: 0,
+  color: theme.palette.common.copy,
+  fontSize: "12px",
+  letterSpacing: "0.05em",
+  textTransform: "uppercase",
 }));
