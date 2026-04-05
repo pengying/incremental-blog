@@ -57,13 +57,17 @@ export default function Page({
             },
           }}
         >
-          <Typography variant="quote">
+          <Typography variant="quote" className="animate-fade-in animate-delay-1">
             Everyday is an opportunity to grow. Sharing my learnings, successes
             and failures.
           </Typography>
         </Box>
-        <AuthorHero />
-        <PostSummary allPostsHeaders={allPostsHeaders}></PostSummary>
+        <Box className="animate-fade-in animate-delay-2">
+          <AuthorHero />
+        </Box>
+        <Box className="animate-fade-in animate-delay-3">
+          <PostSummary allPostsHeaders={allPostsHeaders}></PostSummary>
+        </Box>
       </Container>
     </Layout>
   );
