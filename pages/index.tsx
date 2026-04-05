@@ -58,8 +58,7 @@ export default function Page({
           }}
         >
           <Typography variant="quote" className="animate-fade-in animate-delay-1" sx={{ fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" } }}>
-            Everyday is an opportunity to grow. Sharing my learnings, successes
-            and failures.
+            Build, learn, iterate
           </Typography>
         </Box>
         <Box className="animate-fade-in animate-delay-2">
