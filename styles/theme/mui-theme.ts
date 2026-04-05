@@ -1,4 +1,4 @@
-import { Roboto, Merriweather } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import type {} from "@mui/lab/themeAugmentation";
 
@@ -42,6 +42,7 @@ declare module "@mui/material/styles" {
   }
   interface TypeBackground {
     card?: string;
+    elevated?: string;
   }
 
   interface CommonColors {
@@ -69,14 +70,14 @@ declare module "@mui/material/Typography" {
   }
 }
 
-const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
+const cormorantGaramond = Cormorant_Garamond({
+  weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const merriweather = Merriweather({
-  weight: ["300", "400", "700"],
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -85,21 +86,26 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#111216",
-      card: "#1D2128",
+      default: "#0D0D0F",
+      card: "#161619",
+      elevated: "#1A1A1D",
     },
     common: {
-      horizontalRule: "rgba(255, 255, 255, 0.15)",
-      copy: "#6f7177",
-      track: "rgba(255, 255, 255, 0.3)",
-      progress: "#fff",
+      horizontalRule: "rgba(255, 255, 255, 0.06)",
+      copy: "#8A8A8E",
+      track: "rgba(255, 255, 255, 0.12)",
+      progress: "#E8D5B5",
     },
     action: {
-      hover: "#ffcf74",
-      // hoverOpacity: 1
+      hover: "#E8D5B5",
+    },
+    primary: {
+      main: "#E8D5B5",
+      light: "#F5F0E8",
+      dark: "#D4BC94",
     },
     grey: {
-      600: "#73737D",
+      600: "#8A8A8E",
     },
   },
   components: {
@@ -107,69 +113,65 @@ const theme = createTheme({
     },
   },
   fonts: {
-    merriweather: merriweather.style.fontFamily
+    merriweather: cormorantGaramond.style.fontFamily
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: dmSans.style.fontFamily,
     heroTitle: {
-      fontFamily: merriweather.style.fontFamily,
+      fontFamily: cormorantGaramond.style.fontFamily,
       fontSize: "1.5rem",
       fontWeight: 400,
     },
-
     heroBody: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "1rem",
       fontWeight: 300,
-      color: "#73737D",
+      color: "#8A8A8E",
     },
-
     heroFooter: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "18px",
       fontWeight: 700,
-      color: "#73737D",
+      color: "#8A8A8E",
       opacity: 0.33,
     },
-
     quote: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: cormorantGaramond.style.fontFamily,
       fontSize: "3.0rem",
-      fontWeight: 700,
+      fontWeight: 300,
     },
     authorName: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "2.0rem",
       fontWeight: 700,
     },
     authorDetails: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "18px",
       fontWeight: 400,
     },
     heroName: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "18px",
       fontWeight: 700,
-      color: "#73737D",
+      color: "#8A8A8E",
     },
     heroAuthor: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: dmSans.style.fontFamily,
       fontSize: "14px",
       fontWeight: 400,
-      color: "#73737D",
+      color: "#8A8A8E",
     },
-
     logo: {
-      fontFamily: merriweather.style.fontFamily,
+      fontFamily: cormorantGaramond.style.fontFamily,
       fontSize: "1.5rem",
       fontWeight: 400,
+      fontStyle: "italic",
     },
-
     postTitle: {
-      fontFamily: merriweather.style.fontFamily,
-      fontSize: "3.0rem",
-      fontWeight: 700,
+      fontFamily: cormorantGaramond.style.fontFamily,
+      fontSize: "3.5rem",
+      fontWeight: 600,
     }
   },
 });
