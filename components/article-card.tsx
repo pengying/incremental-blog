@@ -24,7 +24,7 @@ export default function ArticleCard({ pageData }: { pageData: any }) {
           <ImageOverlay />
         </ImageContainer>
       </Link>
-      <CardContent sx={{ padding: "24px 0" }}>
+      <CardContent sx={{ padding: "20px 24px 24px" }}>
         <CardLink href={`/posts/${pageData.slug}`} variant="heroTitle">
           {pageData.title}
         </CardLink>
@@ -51,6 +51,16 @@ const CardHero = styled(Card)(({ theme }) => ({
   overflow: "hidden",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   border: "1px solid rgba(255, 255, 255, 0.06)",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: "1px",
+    background: "linear-gradient(90deg, transparent, rgba(232, 213, 181, 0.15), transparent)",
+    zIndex: 1,
+  },
   "&:hover": {
     transform: "translateY(-8px)",
     boxShadow: `
@@ -92,6 +102,9 @@ const CardLink = styled(Link)(({ theme }) => ({
   marginTop: theme.spacing(2),
   color: theme.palette.primary.light,
   transition: "color 0.2s ease",
+  fontSize: "1.25rem",
+  fontWeight: 600,
+  lineHeight: 1.3,
   "&:hover": {
     color: theme.palette.action.hover,
   },
@@ -107,11 +120,9 @@ const Excerpt = styled(Typography)(({ theme }) => ({
 }));
 
 const CardFooter = styled(Typography)(({ theme }) => ({
-  position: "absolute",
-  bottom: "24px",
-  left: 0,
   color: theme.palette.common.copy,
   fontSize: "12px",
   letterSpacing: "0.05em",
   textTransform: "uppercase",
+  marginTop: theme.spacing(1),
 }));

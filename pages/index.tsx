@@ -45,7 +45,7 @@ export default function Page({
   const theme = useTheme();
   return (
     <Layout copyrightDate={copyrightDate} home>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ pt: { xs: 4, sm: 6, md: 8 } }}>
         <Box
           sx={{
             width: "70%",
@@ -57,7 +57,7 @@ export default function Page({
             },
           }}
         >
-          <Typography variant="quote" className="animate-fade-in animate-delay-1">
+          <Typography variant="quote" className="animate-fade-in animate-delay-1" sx={{ fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" } }}>
             Everyday is an opportunity to grow. Sharing my learnings, successes
             and failures.
           </Typography>

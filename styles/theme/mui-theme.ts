@@ -137,8 +137,9 @@ const theme = createTheme({
     },
     quote: {
       fontFamily: cormorantGaramond.style.fontFamily,
-      fontSize: "3.0rem",
+      fontSize: "3.5rem",
       fontWeight: 300,
+      lineHeight: 1.15,
     },
     authorName: {
       fontFamily: dmSans.style.fontFamily,
