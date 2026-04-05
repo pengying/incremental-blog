@@ -41,13 +41,17 @@ const NavigationHeader: React.FC<{}> = () => {
 
 export default NavigationHeader;
 
-const LogoLink =  styled(Link)(({ theme }) => ({
+const LogoLink = styled(Link)(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
   left: 0,
   color: theme.palette.primary.light,
+  transition: 'color 0.2s ease',
+  '&:hover': {
+    color: theme.palette.action.hover,
+  },
   [theme.breakpoints.only('md')]: {
     left: 0
   }
