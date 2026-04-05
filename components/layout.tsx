@@ -14,6 +14,7 @@ export default function Layout({
 }) {
   return (
     <>
+      <div className="noise-overlay" aria-hidden="true" />
       <Container maxWidth="lg">
         <Header />
       </Container>
