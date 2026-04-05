@@ -135,12 +135,13 @@ export default function Post({
         sizes="100vw"
         priority
         style={{
-          width: "80%",
-          height: "500px",
+          width: "85%",
+          height: "520px",
           objectFit: "cover",
-          objectPosition: "left 20%",
-          margin: `0 auto 35px`,
+          objectPosition: "center 20%",
+          margin: `0 auto 50px`,
           display: "block",
+          borderRadius: "16px",
         }}
         alt={frontmatter.title}
       />
@@ -192,7 +193,7 @@ export default function Post({
 const ConstrainedStack = styled(Stack)(({ theme }) => ({
   margin: `${theme.spacing(8)} auto 35px`,
   width: "100%",
-  maxWidth: "680px",
+  maxWidth: "720px",
 }));
 
 // Styles for HTML in the mdx files
