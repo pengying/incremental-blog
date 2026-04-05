@@ -37,8 +37,8 @@ const FooterGradient = styled(Box)({
     bottom: 0,
     left: 0,
     width: '100%',
-    height: '350px',
+    height: '400px',
     zIndex: -1,
     pointerEvents: 'none',
-    background: 'linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)',
+    background: 'linear-gradient(180deg, #0D0D0F 0%, rgba(13, 13, 15, 0.0) 100%)',
 })
