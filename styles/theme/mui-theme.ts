@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Manrope, Newsreader } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import type {} from "@mui/lab/themeAugmentation";
 
@@ -70,14 +70,14 @@ declare module "@mui/material/Typography" {
   }
 }
 
-const cormorantGaramond = Cormorant_Garamond({
-  weight: ["300", "400", "600", "700"],
+const newsreader = Newsreader({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  weight: ["400", "500", "700"],
+const manrope = Manrope({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -86,26 +86,26 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#0D0D0F",
-      card: "#161619",
-      elevated: "#1A1A1D",
+      default: "#101114",
+      card: "#15171c",
+      elevated: "#1b1e24",
     },
     common: {
-      horizontalRule: "rgba(255, 255, 255, 0.06)",
-      copy: "#8A8A8E",
-      track: "rgba(255, 255, 255, 0.12)",
-      progress: "#E8D5B5",
+      horizontalRule: "rgba(235, 239, 245, 0.09)",
+      copy: "#9ca3af",
+      track: "rgba(235, 239, 245, 0.14)",
+      progress: "#f2c66d",
     },
     action: {
-      hover: "#E8D5B5",
+      hover: "#f2c66d",
     },
     primary: {
-      main: "#E8D5B5",
-      light: "#F5F0E8",
-      dark: "#D4BC94",
+      main: "#f2c66d",
+      light: "#f8fafc",
+      dark: "#daab4d",
     },
     grey: {
-      600: "#8A8A8E",
+      600: "#9ca3af",
     },
   },
   components: {
@@ -113,66 +113,79 @@ const theme = createTheme({
     },
   },
   fonts: {
-    merriweather: cormorantGaramond.style.fontFamily
+    merriweather: newsreader.style.fontFamily
   },
   typography: {
-    fontFamily: dmSans.style.fontFamily,
+    fontFamily: manrope.style.fontFamily,
     heroTitle: {
-      fontFamily: cormorantGaramond.style.fontFamily,
-      fontSize: "1.5rem",
-      fontWeight: 400,
+      fontFamily: newsreader.style.fontFamily,
+      fontSize: "1.65rem",
+      fontWeight: 600,
+      lineHeight: 1.15,
+      letterSpacing: "-0.02em",
     },
     heroBody: {
-      fontFamily: dmSans.style.fontFamily,
+      fontFamily: manrope.style.fontFamily,
       fontSize: "1rem",
-      fontWeight: 300,
-      color: "#8A8A8E",
+      fontWeight: 500,
+      lineHeight: 1.75,
+      color: "#9ca3af",
     },
     heroFooter: {
-      fontFamily: dmSans.style.fontFamily,
-      fontSize: "18px",
+      fontFamily: manrope.style.fontFamily,
+      fontSize: "0.75rem",
       fontWeight: 700,
-      color: "#8A8A8E",
-      opacity: 0.33,
+      color: "#9ca3af",
+      opacity: 0.72,
+      letterSpacing: "0.14em",
+      textTransform: "uppercase",
     },
     quote: {
-      fontFamily: cormorantGaramond.style.fontFamily,
-      fontSize: "3.5rem",
-      fontWeight: 300,
-      lineHeight: 1.15,
+      fontFamily: newsreader.style.fontFamily,
+      fontSize: "4rem",
+      fontWeight: 600,
+      lineHeight: 1.02,
+      letterSpacing: "-0.045em",
     },
     authorName: {
-      fontFamily: dmSans.style.fontFamily,
+      fontFamily: manrope.style.fontFamily,
       fontSize: "2.0rem",
       fontWeight: 700,
     },
     authorDetails: {
-      fontFamily: dmSans.style.fontFamily,
+      fontFamily: manrope.style.fontFamily,
       fontSize: "18px",
       fontWeight: 400,
     },
     heroName: {
-      fontFamily: dmSans.style.fontFamily,
-      fontSize: "18px",
-      fontWeight: 700,
-      color: "#8A8A8E",
+      fontFamily: manrope.style.fontFamily,
+      fontSize: "0.75rem",
+      fontWeight: 800,
+      color: "#f2c66d",
+      letterSpacing: "0.16em",
+      textTransform: "uppercase",
     },
     heroAuthor: {
-      fontFamily: dmSans.style.fontFamily,
-      fontSize: "14px",
-      fontWeight: 400,
-      color: "#8A8A8E",
+      fontFamily: manrope.style.fontFamily,
+      fontSize: "0.98rem",
+      fontWeight: 500,
+      lineHeight: 1.75,
+      color: "#cbd5e1",
     },
     logo: {
-      fontFamily: cormorantGaramond.style.fontFamily,
-      fontSize: "1.5rem",
-      fontWeight: 400,
-      fontStyle: "italic",
+      fontFamily: manrope.style.fontFamily,
+      fontSize: "1.55rem",
+      fontWeight: 800,
+      lineHeight: 1,
+      letterSpacing: "0.08em",
+      textTransform: "uppercase",
     },
     postTitle: {
-      fontFamily: cormorantGaramond.style.fontFamily,
+      fontFamily: newsreader.style.fontFamily,
       fontSize: "3.5rem",
       fontWeight: 600,
+      lineHeight: 1.05,
+      letterSpacing: "-0.04em",
     }
   },
 });

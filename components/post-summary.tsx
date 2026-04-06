@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import Grid from "@mui/material/Unstable_Grid2";
 import Pagination from "@mui/material/Pagination";
-import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ArticleCard from "./article-card";
 
@@ -51,11 +52,26 @@ export default function PostSummary({
 
   return (
     <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: { xs: "flex-start", md: "flex-end" },
+          gap: 2,
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <Box>
+          <Typography variant="heroName" sx={{ mb: 1 }}>
+            Recent writing
+          </Typography>
+        </Box>
+      </Box>
       <Grid
         container
-        spacing={5}
+        spacing={{ xs: 3, md: 4 }}
         sx={{
-          mt: theme.spacing(12),
+          mt: { xs: 4, md: 5 },
         }}
       >
         {currPageData.currentData().map((pageData: any, index: number) => {
@@ -68,8 +84,8 @@ export default function PostSummary({
       </Grid>
       <Pagination
         sx={{
-          mt: theme.spacing(10),
-          mb: theme.spacing(10),
+          mt: { xs: 5, md: 6 },
+          mb: { xs: 2, md: 4 },
         }}
         count={Math.ceil(allPostsHeaders.length / postsPerPage)}
         page={currPageData.currentPage}

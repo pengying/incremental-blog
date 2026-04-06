@@ -18,7 +18,7 @@ export default function Layout({
       <Container maxWidth="lg">
         <Header />
       </Container>
-      {children}
+      <main>{children}</main>
       <Container maxWidth="lg">
         <Footer copyrightDate={copyrightDate} />
       </Container>

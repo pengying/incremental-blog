@@ -14,7 +14,10 @@ export default function Footer({ copyrightDate }: { copyrightDate: any }) {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          pb: theme.spacing(6),
+          alignItems: 'center',
+          gap: 2,
+          flexDirection: { xs: 'column', sm: 'row' },
+          pb: theme.spacing(3),
         }}
       >
         <Typography variant="heroFooter">© {copyrightDate} Incremental</Typography>
@@ -27,9 +30,9 @@ export default function Footer({ copyrightDate }: { copyrightDate: any }) {
 
 const Hr = styled("hr")(({ theme }) => ({
   color: theme.palette.grey[600],
-  opacity: 0.33,
+  opacity: 0.5,
   marginBottom: theme.spacing(6),
-  marginTop: theme.spacing(20),
+  marginTop: theme.spacing(10),
 }));
 
 const FooterGradient = styled(Box)({
@@ -40,5 +43,5 @@ const FooterGradient = styled(Box)({
     height: '400px',
     zIndex: -1,
     pointerEvents: 'none',
-    background: 'linear-gradient(180deg, #0D0D0F 0%, rgba(13, 13, 15, 0.0) 100%)',
+    background: 'linear-gradient(180deg, rgba(13, 15, 19, 0) 0%, rgba(13, 15, 19, 0.9) 100%)',
 })

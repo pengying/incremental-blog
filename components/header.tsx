@@ -15,15 +15,9 @@ const NavigationHeader: React.FC<{}> = () => {
         sx={{
           position: "relative",
           zIndex: "appbar",
-          pt: theme.spacing(10),
+          pt: { xs: 4, sm: 5, md: 6 },
           display: "flex",
           justifyContent: "space-between",
-          [theme.breakpoints.down("sm")]: {
-            pt: "50px",
-          },
-          "@media screen and (max-height: 800px)": {
-            pt: "50px",
-          },
         }}
       >
         <LogoLink
@@ -46,11 +40,13 @@ const LogoLink = styled(Link)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
+  gap: theme.spacing(1.5),
   left: 0,
   color: theme.palette.primary.light,
-  transition: 'color 0.2s ease',
+  transition: 'color 0.2s ease, opacity 0.2s ease',
   '&:hover': {
     color: theme.palette.action.hover,
+    opacity: 0.9,
   },
   [theme.breakpoints.only('md')]: {
     left: 0

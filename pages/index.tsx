@@ -4,14 +4,12 @@ import Layout from "@/components/layout";
 import AuthorHero from "@/components/author-hero";
 import PostSummary from "@/components/post-summary";
 
-import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 import { getSortedPostsHeaders, getCopyrightDate } from "@/lib/posts";
 
 import type { Metadata } from "next";
-import Head from "next/head";
 import Container from "@mui/material/Container";
 
 export const metadata: Metadata = {
@@ -42,29 +40,26 @@ export default function Page({
   allPostsHeaders: any;
   copyrightDate: string;
 }) {
-  const theme = useTheme();
   return (
     <Layout copyrightDate={copyrightDate} home>
-      <Container maxWidth="lg" sx={{ pt: { xs: 4, sm: 6, md: 8 } }}>
+      <Container maxWidth="lg" sx={{ pb: { xs: 2, md: 3 } }}>
         <Box
           sx={{
-            width: "70%",
-            mt: theme.spacing(10),
-            mb: theme.spacing(10),
-            lineHeight: 1.2,
-            [theme.breakpoints.down("sm")]: {
-              // display: 'none',
-            },
+            mt: { xs: 4, md: 5 },
+            maxWidth: { xs: "100%", md: "52rem" },
           }}
+          className="animate-fade-in animate-delay-1"
         >
-          <Typography variant="quote" className="animate-fade-in animate-delay-1" sx={{ fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" } }}>
-            Build, learn, iterate
-          </Typography>
+          <Stack spacing={{ xs: 3, md: 4 }}>
+            <AuthorHero />
+          </Stack>
         </Box>
-        <Box className="animate-fade-in animate-delay-2">
-          <AuthorHero />
-        </Box>
-        <Box className="animate-fade-in animate-delay-3">
+        <Box
+          sx={{
+            mt: { xs: 6, md: 8 },
+          }}
+          className="animate-fade-in animate-delay-2"
+        >
           <PostSummary allPostsHeaders={allPostsHeaders}></PostSummary>
         </Box>
       </Container>
