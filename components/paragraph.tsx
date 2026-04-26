@@ -11,6 +11,11 @@ const Paragraph = styled('p', {
     transition: theme.transitions.create('background'),
     margin: '0 auto 35px',
     width: '100%',
+    boxSizing: 'border-box',
+    px: {
+        xs: 2.5,
+        sm: 0,
+    },
     maxWidth: {
         sm: 486,
         md: 680,

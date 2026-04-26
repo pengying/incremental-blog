@@ -5,8 +5,6 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import ArticleCard from "./article-card";
 
 function usePagination(data: any, itemsPerPage: number) {
@@ -47,9 +45,6 @@ export default function PostSummary({
   const handleChange = (e: any, p: number) => {
     currPageData.jump(p);
   };
-  const theme = useTheme();
-  const smallSplit = useMediaQuery(theme.breakpoints.down("md")) ? 7 : 5;
-
   return (
     <>
       <Box
@@ -76,7 +71,7 @@ export default function PostSummary({
       >
         {currPageData.currentData().map((pageData: any, index: number) => {
           return (
-            <Grid key={pageData.id} xs={(index + 1) % 4 > 1 ? smallSplit : 7}>
+            <Grid key={pageData.id} xs={12} md={(index + 1) % 4 > 1 ? 5 : 7}>
               <ArticleCard pageData={pageData}></ArticleCard>
             </Grid>
           );
