@@ -46,11 +46,6 @@ const LogoContainer = styled("div")(({ theme }) =>
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
-    ".hideable": {
-      [theme.breakpoints.down("sm")]: {
-        display: "none",
-      },
-    },
   }),
 );
 
@@ -64,6 +59,9 @@ const Wordmark = styled("div")(({ theme }) => ({
     fontSize: "1rem",
     fontWeight: 500,
     opacity: 0.7,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   "& .tagline": {
     fontFamily: theme.fonts.merriweather,
@@ -76,5 +74,8 @@ const Wordmark = styled("div")(({ theme }) => ({
     display: "inline-flex",
     alignItems: "center",
     transform: "translateY(3px)",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
 }));

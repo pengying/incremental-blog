@@ -125,31 +125,64 @@ export default function Post({
       <style jsx>{prismStyles}</style>
       <style jsx>{htmlStyles}</style>
       <ConstrainedStack spacing={2}>
-        <Typography variant="postTitle">{frontmatter.title}</Typography>
+        <Typography variant="postTitle" sx={{ display: { xs: "none", sm: "block" } }}>
+          {frontmatter.title}
+        </Typography>
         <ArticleSummary frontmatter={frontmatter} />
       </ConstrainedStack>
-      <Image
-        src={frontmatter.hero}
-        width="0"
-        height="0"
-        sizes="100vw"
-        priority
-        style={{
-          width: "85%",
-          height: "520px",
-          objectFit: "cover",
-          objectPosition: "center 20%",
-          margin: `0 auto 50px`,
-          display: "block",
-          borderRadius: "16px",
+      <Box
+        sx={{
+          position: "relative",
+          width: { xs: "100%", md: "85%" },
+          height: { xs: 280, sm: 380, md: 520 },
+          mx: "auto",
+          mb: { xs: 5, md: "50px" },
+          overflow: "hidden",
+          borderRadius: { xs: 0, md: "16px" },
         }}
-        alt={frontmatter.title}
-      />
+      >
+        <Typography
+          variant="postTitle"
+          component="h1"
+          sx={{
+            display: { xs: "block", sm: "none" },
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            px: 2.5,
+            pb: 3,
+            pt: 8,
+            background:
+              "linear-gradient(180deg, rgba(16, 17, 20, 0) 0%, rgba(16, 17, 20, 0.84) 72%, rgba(16, 17, 20, 0.96) 100%)",
+            textShadow: "0 2px 18px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          {frontmatter.title}
+        </Typography>
+        <Image
+          src={frontmatter.hero}
+          fill
+          sizes="100vw"
+          priority
+          style={{
+            objectFit: "cover",
+            objectPosition: "center 20%",
+          }}
+          alt={frontmatter.title}
+        />
+      </Box>
       <Box
         sx={{
           "h1, h2, h3, h4, h5, h6": {
             width: "100%",
             margin: "0 auto",
+            boxSizing: "border-box",
+            px: {
+              xs: 2.5,
+              sm: 0,
+            },
             maxWidth: {
               sm: 486,
               md: 507,
@@ -193,7 +226,14 @@ export default function Post({
 const ConstrainedStack = styled(Stack)(({ theme }) => ({
   margin: `${theme.spacing(8)} auto 35px`,
   width: "100%",
+  boxSizing: "border-box",
+  paddingLeft: theme.spacing(2.5),
+  paddingRight: theme.spacing(2.5),
   maxWidth: "720px",
+  [theme.breakpoints.up("sm")]: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
 }));
 
 // Styles for HTML in the mdx files

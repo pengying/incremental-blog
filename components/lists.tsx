@@ -10,17 +10,24 @@ const orderedList =  styled('ol')(({ theme }) => theme.unstable_sx({
   transition: theme.transitions.create('color'),
   fontSize: '18px',
   width: '100%',
+  boxSizing: 'border-box',
   maxWidth: {
     sm: 486,
     md: 680,
   },
+  paddingRight: {
+    xs: '20px',
+    sm: 0,
+  },
   paddingLeft: {
+    xs: '42px',
     sm: '20px',
   },
   'li' : {
     position: 'relative',
     paddingBottom: '15px',
     paddingLeft: {
+        xs: 0,
         sm: '20px',
     },
     'p' : {
@@ -40,6 +47,7 @@ const orderedList =  styled('ol')(({ theme }) => theme.unstable_sx({
     content: 'counter(list) \'.\'',
     fontWeight: 'bold',
     left: {
+        xs:'-1.4rem',
         sm:'-1.3rem',
     },
     top: '-0.14rem',
@@ -58,17 +66,24 @@ const unorderedList =  styled('ul')(({ theme }) => theme.unstable_sx({
     transition: theme.transitions.create('color'),
     fontSize: '18px',
     width: '100%',
+    boxSizing: 'border-box',
     maxWidth: {
       sm: 486,
       md: 680,
     },
+    paddingRight: {
+      xs: '20px',
+      sm: 0,
+    },
     paddingLeft: {
+      xs: '42px',
       sm: '20px',
     },
     'li' : {
       position: 'relative',
       paddingBottom: '15px',
       paddingLeft: {
+          xs: 0,
           sm: '20px',
       },
       'p' : {
@@ -89,6 +104,7 @@ const unorderedList =  styled('ul')(({ theme }) => theme.unstable_sx({
       width: '8px',
       fontWeight: 'bold',
       left: {
+          xs:'-1.4rem',
           sm:'-1.3rem',
       },
       fontSize: '1.3rem',
